@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#101722">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Сила">
+<meta name="description" content="Личный дневник тренировок: подходы, история, рекомендации и отчёты TXT">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Сила · Дневник тренировок</title>
+<style>
+:root{--bg:#0b111a;--panel:#151e2b;--panel2:#1c2938;--text:#eaf2f9;--muted:#91a3b6;--line:#334252;--lime:#bcf46a;--deep:#243c25;--warn:#f5c76d;--danger:#ff9292;--safe-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{background:var(--bg);color:var(--text)}body{margin:0;font:15px/1.43 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;min-height:100vh;padding-bottom:calc(92px + var(--safe-bottom));background:radial-gradient(ellipse 700px 500px at 50% -240px,#233b35 0%,transparent 95%),var(--bg)}button,input,select,textarea{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}input,select,textarea{color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:10px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--lime)}input[type=number]{min-width:0;width:100%;padding:10px 9px;font-variant-numeric:tabular-nums}textarea{width:100%;resize:vertical;padding:12px;min-height:62px}input[type=date]{padding:10px 10px;width:100%;min-height:44px;color-scheme:dark}input[type=text]{padding:10px;min-height:42px;width:100%}select{padding:9px 5px;min-width:0;width:100%;color-scheme:dark}input::placeholder,textarea::placeholder{color:#65778b}
+.wrap{max-width:700px;padding:21px 16px;margin:0 auto}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px}.brand{display:flex;gap:10px;align-items:center}.brandicon{width:45px;height:45px;border-radius:15px;background:var(--lime);color:#162419;display:grid;place-items:center;font-size:26px;font-weight:900}.eyebrow{font-size:11px;letter-spacing:.16em;color:var(--muted);font-weight:800;text-transform:uppercase}.big{font-size:27px;font-weight:850;letter-spacing:-.8px;line-height:1.14}.small{font-size:12px;color:var(--muted)}.muted{color:var(--muted)}.h{font-size:20px;font-weight:800;letter-spacing:-.35px;margin:5px 0}.panel{border:1px solid #2d3b4b;background:var(--panel);border-radius:18px;padding:16px;margin:13px 0}.panel.pale{background:var(--panel2)}.panel.no-pad{padding:0}.row{display:flex;gap:10px;align-items:center}.between{justify-content:space-between}.grow{flex:1;min-width:0}.stack{display:flex;flex-direction:column;gap:8px}.button{border:1px solid #3f5061;background:#283749;color:var(--text);border-radius:12px;padding:11px 15px;min-height:43px;font-weight:750}.button:active{transform:scale(.987)}.button.primary{color:#142015;background:var(--lime);border-color:var(--lime)}.button.minor{background:transparent}.button.danger{color:var(--danger);border-color:#6a4447;background:#352529}.button.sm{font-size:12px;padding:7px 10px;min-height:32px;border-radius:9px}.button:disabled{opacity:.38;cursor:not-allowed}.full{width:100%}.pill{display:inline-flex;gap:4px;align-items:center;font-size:11px;font-weight:750;border-radius:99px;padding:5px 9px;background:#2a3949;color:#b7c9dc;white-space:nowrap}.pill.good{background:#23432d;color:#bcf7c4}.pill.warn{background:#4b3c25;color:#ffde9b}.pill.bad{background:#482a2f;color:#ffc0c0}.day-tabs{display:flex;gap:7px;margin:15px 0}.day-tabs button{flex:1;border:1px solid #2e3b4c;background:#15202d;color:#afc1d0;border-radius:13px;padding:12px;font-weight:850;min-height:44px}.day-tabs button.selected{background:var(--lime);border-color:var(--lime);color:#162516}.topnav{position:fixed;z-index:15;bottom:0;left:0;right:0;display:flex;background:#0f1823f2;backdrop-filter:blur(12px);border-top:1px solid #28394b;padding:8px 8px calc(9px + var(--safe-bottom));gap:5px}.topnav button{display:flex;align-items:center;flex-direction:column;justify-content:center;gap:4px;flex:1;padding:8px 4px;min-height:53px;border:0;background:transparent;color:#8598a9;font-size:11px;font-weight:750}.topnav button.active{color:var(--lime)}.navicon{font-size:22px;line-height:1}.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}.statnum{font-size:23px;font-weight:850;letter-spacing:-.4px}.stat{padding:12px;background:#1e2b39;border-radius:12px;min-width:0}.progress-track{height:8px;border-radius:100px;background:#334557;overflow:hidden}.progress-fill{height:100%;background:var(--lime);transition:width .2s}.exercise{padding:15px;border-top:1px solid #2d3b4b}.exercise:first-child{border-top:0}.ex-title{font-size:16px;font-weight:850;letter-spacing:-.15px}.exmeta{font-size:12px;color:var(--muted);margin:3px 0 13px}.set{padding:11px;background:#1b2836;border:1px solid #2d3c4a;border-radius:13px;margin:8px 0}.set.done{border-color:#537b45;background:#1d312a}.sethd{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.mini{font-size:11px;color:var(--muted)}.target{font-weight:800;color:#e2edf6}.fields{display:grid;grid-template-columns:1.15fr 1.0fr .9fr auto;gap:7px;align-items:end}.field-label{display:block;color:var(--muted);font-size:10px;font-weight:750;margin-bottom:4px}.tick{width:44px;height:43px;border:1px solid #435267;border-radius:10px;background:#253445;color:#b2c5d3;font-size:24px;font-weight:900}.tick.active{color:#112015;background:var(--lime);border-color:var(--lime)}.notice{font-size:13px;border-radius:12px;padding:12px;line-height:1.5;border:1px solid #3d5262;background:#203040;margin:10px 0}.notice.warn{background:#3a3224;border-color:#746038;color:#ffe2af}.notice.good{background:#21392c;border-color:#477453}.space{height:8px}.section-label{font-size:12px;color:#aabac9;letter-spacing:.04em;font-weight:800;margin:18px 0 9px}.footnote{font-size:12px;line-height:1.55;color:var(--muted)}.editor{margin-bottom:12px}.edit-row{display:grid;grid-template-columns:82px 1fr 1fr 38px;gap:7px;align-items:center;margin:7px 0}.edit-row select,.edit-row input{min-height:40px}.iconbtn{border:1px solid #415268;border-radius:9px;height:39px;width:38px;background:#293648;color:#d7e1eb;font-weight:800}.editor-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.history-item{width:100%;border:1px solid #334355;background:#1a2836;border-radius:13px;padding:14px;display:flex;justify-content:space-between;align-items:center;color:var(--text);text-align:left;margin:10px 0}.history-item .label{font-weight:800}.hint{border-left:3px solid #a7d86b;padding:2px 0 2px 12px;color:#cbd9e3;font-size:13px;margin:10px 0}.sticky-rest{position:fixed;z-index:12;bottom:calc(77px + var(--safe-bottom));left:16px;right:16px;max-width:668px;margin:auto;border-radius:16px;background:#c9f692;color:#17301b;box-shadow:0 5px 36px #0009;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:800}.toast{position:fixed;z-index:30;left:50%;transform:translateX(-50%);bottom:calc(104px + var(--safe-bottom));padding:12px 15px;background:#eef6ff;color:#102030;border-radius:12px;box-shadow:0 6px 28px #0009;max-width:min(92vw,500px);text-align:center;font-size:13px;font-weight:700}.divider{border-top:1px solid #324050;margin:16px 0}.schedule-item{padding:12px 0;border-top:1px solid #334252;display:flex;align-items:center;justify-content:space-between;gap:9px}.schedule-item:first-child{border-top:0}.schedule-date{font-weight:850}.schedule-sub{font-size:12px;color:var(--muted)}.code-label{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#b8eda1}.info-list{line-height:1.7;font-size:13px}.hidden{display:none!important}@media(min-width:680px){.topnav{max-width:700px;left:50%;transform:translateX(-50%);border-radius:18px 18px 0 0}.wrap{padding:28px}.sticky-rest{left:50%;transform:translateX(-50%);width:calc(100% - 32px)}}
+</style>
+</head>
+<body><main id="app" class="wrap"></main><nav id="navigation" class="topnav" aria-label="Навигация"></nav><div id="restDock"></div><div id="toast" class="toast hidden" role="status"></div><input type="file" accept=".json,application/json" id="importFile" class="hidden" aria-label="Загрузить резервную копию"><input type="file" accept=".txt,text/plain" id="planImportFile" class="hidden" aria-label="Загрузить TXT с программой">
+<script>
+'use strict';
+(()=>{
+const KEY='sila-dnevnik-v1';
+const D={tue:'Вторник',thu:'Четверг',sat:'Суббота'};
+const WEEK={tue:2,thu:4,sat:6};
+const n=(x)=>x===''||x===null||x===undefined?NaN:Number(String(x).replace(',','.'));
+const fmt=(x)=>Number.isFinite(n(x))?String(+n(x)).replace('.',','):'—';
+const has=(x)=>x!==''&&x!==null&&x!==undefined&&Number.isFinite(n(x));
+const esc=(x)=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,10);
+const set=(type,w,r)=>({type,weight:String(w??''),reps:String(r??'')});
+const exercise=(id,name,unit,step,sets,notes='')=>({id,name,unit,step,sets,notes});
+function seed(){
+return {
+ tue:{version:1,verified:false,exercises:[
+ exercise('incline','Жим гантелей на наклонной 30°','кг/гант.',2.5,[set('work','','')]),
+ exercise('row','Горизонтальная тяга узким хватом','кг',5,[set('work','','')]),
+ exercise('shoulder','Жим гантелей сидя','кг/гант.',2.5,[set('work','','')]),
+ exercise('triceps','Разгибание рук в блоке','кг',5,[set('work','','')]),
+ exercise('biceps','Сгибание рук с канатом','кг',5,[set('work','','')]),
+ exercise('legpress','Жим ногами','кг',10,[set('work','','')]),
+ exercise('lateral','Махи гантелями в стороны','кг/гант.',2.5,[set('work','','')])]},
+ thu:{version:1,verified:true,exercises:[
+ exercise('incline','Жим гантелей на наклонной 30°','кг/гант.',2.5,[set('warm','15','8'),set('warm','22.5','4'),set('work','27.5','10'),set('work','27.5','10')]),
+ exercise('row','Горизонтальная тяга узким хватом','кг',5,[set('warm','50','8'),set('warm','60','3'),set('work','65','11'),set('work','65','10'),set('work','60','12')]),
+ exercise('legpress','Жим ногами','кг',10,[set('warm','50','10'),set('warm','90','5'),set('work','120','10'),set('work','120','10')],'Без мелких блинов на разминке; 50 → 90 → 120 кг.'),
+ exercise('shoulder','Жим гантелей сидя','кг/гант.',2.5,[set('warm','20','4'),set('work','25','9'),set('work','25','8')]),
+ exercise('lateral','Махи гантелями в стороны','кг/гант.',2.5,[set('warm','10','8'),set('work','15','14'),set('work','15','13'),set('work','12.5','15')]),
+ exercise('biceps','Сгибание рук с канатом','кг',5,[set('work','60','12'),set('work','60','12')],'Без отдельного разминочного подхода.'),
+ exercise('triceps','Разгибание рук в блоке','кг',5,[set('warm','50','6'),set('work','60','10'),set('work','60','10')])]},
+ sat:{version:1,verified:false,exercises:[
+ exercise('incline','Жим гантелей на наклонной 30°','кг/гант.',2.5,[set('warm','15','8'),set('warm','22.5','4'),set('warm','27.5','2'),set('work','30','9'),set('work','30','8')]),
+ exercise('pullups','Подтягивания','повт./вес +кг',2.5,[set('work','','')]),
+ exercise('row','Горизонтальная тяга узким хватом','кг',5,[set('work','','')]),
+ exercise('legpress','Жим ногами','кг',10,[set('work','','')]),
+ exercise('lateral','Махи гантелями в стороны','кг/гант.',2.5,[set('work','','')])
+ ]}
+};}
+function isoDate(d){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`;}
+function nextDate(day){const dt=new Date();dt.setHours(12,0,0,0);let delta=(WEEK[day]-dt.getDay()+7)%7;dt.setDate(dt.getDate()+delta);return isoDate(dt);}
+function nextDay(){const day=new Date().getDay();return ['tue','thu','sat'].find(d=>WEEK[d]>=day)||'tue';}
+const defaults=()=>({templates:seed(),sessions:[],planned:{},settings:{restSec:150},ui:{day:nextDay(),date:nextDate(nextDay()),tab:'train'}});
+let state;let currentError='',importFeedback='',timerEnd=0,toastTimer;
+try{const raw=localStorage.getItem(KEY);state=raw?JSON.parse(raw):defaults();if(!state.templates||!state.sessions||!state.settings)throw Error('bad state');if(!state.ui)state.ui=defaults().ui;if(!state.planned||typeof state.planned!=='object'||Array.isArray(state.planned))state.planned={};}catch(err){state=defaults();currentError='Не удалось прочитать сохранённые данные. Резервная копия поможет восстановить историю.';}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state));return true;}catch(e){toast('Сохранение недоступно. Экспортируйте резервную копию!');return false;}};
+function toast(s){const el=document.querySelector('#toast');el.textContent=s;el.classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.add('hidden'),4200);}
+function sessionsBefore(day,date){return state.sessions.filter(s=>s.day===day&&s.date<date).sort((a,b)=>b.date.localeCompare(a.date));}
+function isDone(s){return Boolean(s.done)&&has(s.actualWeight)&&n(s.actualWeight)>=0&&has(s.actualReps)&&n(s.actualReps)>=0;}
+function workSets(ex){return ex.sets.filter(s=>s.type==='work');}
+function recorded(s){return s.exercises?.some(ex=>workSets(ex).some(isDone));}
+function assess(ex){
+ const work=workSets(ex);
+ if(!work.length)return {code:'empty',reason:'Нет рабочих подходов'};
+ if(work.some(s=>!has(s.targetWeight)||!has(s.targetReps)))return {code:'unknown',reason:'Цели не указаны — нужна настройка шаблона'};
+ if(work.some(s=>!isDone(s)))return {code:'partial',reason:'Не все рабочие подходы выполнены'};
+ if(work.some(s=>n(s.actualWeight)+0.001<n(s.targetWeight)||n(s.actualReps)<n(s.targetReps)))return {code:'hold',reason:'Не все целевые веса и повторы достигнуты'};
+ if(work.some(s=>!has(s.rir)))return {code:'rir',reason:'Запас повторений (RIR) указан не во всех рабочих подходах'};
+ if(work.some(s=>n(s.rir)<2))return {code:'hard',reason:'Есть подходы с запасом менее 2 повторов'};
+ return {code:'up',reason:'Цели достигнуты, все рабочие подходы с RIR ≥ 2'};
+}
+function suggest(day,date){
+ const t=state.templates[day],history=sessionsBefore(day,date).filter(recorded),last=history[0];
+ return t.exercises.map(ex=>{
+   let from=ex.sets.map(s=>({...s})),why='Исходный согласованный шаблон',code='base',hist=null;
+   const prev=last?.exercises?.find(e=>e.id===ex.id);
+   if(prev&&last.templateVersion===t.version&&prev.sets.length===from.length){
+     from=prev.sets.map(s=>({type:s.type,weight:s.targetWeight,reps:s.targetReps}));
+     const test=assess(prev);code=test.code;why=test.reason;hist=last.date;
+     if(code==='up'&&has(last.recovery)&&n(last.recovery)<=2){code='recovery';why='Отмечено слабое восстановление на прошлой тренировке';}
+     if(code==='up'&&n(ex.step)>0){from=from.map(s=>s.type==='work'&&has(s.weight)&&n(s.weight)>0?{...s,weight:String(+(n(s.weight)+n(ex.step)).toFixed(2))}:s);}
+     else if(code==='up'){code='hold';why='Шаг увеличения не задан';}
+   }else if(last&&last.templateVersion!==t.version){why='Шаблон изменён: использовать новые целевые значения';}
+   const rows=from.map(s=>({type:s.type,targetWeight:String(s.weight??''),targetReps:String(s.reps??''),actualWeight:'',actualReps:'',rir:'',done:false}));
+   return {...ex,sets:rows,suggestCode:code,suggestWhy:why,sourceDate:hist};
+ });
+}
+// Запланированные даты из TXT имеют приоритет над автоматической прогрессией.
+function scheduled(day,date){const p=state.planned?.[date];return p?.day===day?p:null;}
+function upcomingSchedule(){return Object.values(state.planned||{}).sort((a,b)=>a.date.localeCompare(b.date));}
+function workoutProposal(day,date){
+ const p=scheduled(day,date);
+ if(!p)return {items:suggest(day,date),source:'auto',plan:null};
+ const items=p.exercises.map(ex=>({...ex,sets:ex.sets.map(r=>({type:r.type,targetWeight:String(r.weight),targetReps:String(r.reps),actualWeight:'',actualReps:'',rir:'',done:false})),suggestCode:'imported',suggestWhy:'Точный план из TXT-файла'}));
+ return {items,source:'imported',plan:p};
+}
+function sessionId(day,date){return `${day}_${date}`;}
+function currentSession(){return state.sessions.find(s=>s.id===sessionId(state.ui.day,state.ui.date));}
+function startSession(){if(currentSession()){render();return;}const {day,date}=state.ui;
+const proposal=workoutProposal(day,date);const sess={id:sessionId(day,date),day,date,templateVersion:state.templates[day].version,createdAt:new Date().toISOString(),source:proposal.source,planTitle:proposal.plan?.title||'',planNotes:proposal.plan?.notes||'',exercises:proposal.items,recovery:'',note:''};
+state.sessions.push(sess);save();render();toast('Тренировка создана: план сохранён отдельно от шаблона');}
+const labelDate=x=>{try{return new Date(`${x}T12:00:00`).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'});}catch{return x;}};
+function summary(s){let t=0,done=0;for(const ex of s.exercises){for(const row of workSets(ex)){t++;if(isDone(row))done++;}}return {done,total:t};}
+const daytabs=()=>`<div class="day-tabs">${Object.keys(D).map(day=>`<button data-action="day" data-day="${day}" class="${state.ui.day===day?'selected':''}">${D[day]}</button>`).join('')}</div>`;
+const pills=(arr)=>arr.map(([text,cls])=>`<span class="pill ${cls||''}">${esc(text)}</span>`).join(' ');
+function intro(title,caption){return `<div class="topline"><div class="brand"><div class="brandicon">↗</div><div><div class="eyebrow">Личный тренировочный журнал</div><div class="big">СИЛА <span style="color:var(--lime)">/</span> ${esc(title)}</div></div></div><span class="pill">Локально</span></div>${caption?`<p class="muted" style="margin:14px 0 0">${caption}</p>`:''}`;}
+function renderTrain(){const s=currentSession(),day=state.ui.day,date=state.ui.date;
+let html=intro('Дневник','Записывай фактические подходы. Пустые поля не считаются выполненными.')+daytabs();
+html+=`<div class="panel"><div class="row between"><div class="grow"><div class="eyebrow">Дата тренировки</div><div class="h">${esc(D[day])}</div></div><div class="grow"><input type="date" data-date value="${esc(date)}"></div></div></div>`;
+if(!s){const proposal=workoutProposal(day,date),items=proposal.items,fromFile=proposal.source==='imported';html+=`<div class="panel"><div class="row between"><div><div class="h">${fromFile?esc(proposal.plan.title||'План из TXT'):`План на ${esc(D[day].toLowerCase())}`}</div><div class="small">${items.length} упражнений · ${items.reduce((acc,e)=>acc+workSets(e).length,0)} рабочих подходов</div></div><span class="pill ${fromFile||state.templates[day].verified?'good':'warn'}">${fromFile?'Из TXT':state.templates[day].verified?'Перенесённый план':'Частичный шаблон'}</span></div>`;
+if(!fromFile&&!state.templates[day].verified)html+='<div class="notice warn">Не все целевые подходы этого дня известны. Проверь и заполни их во вкладке «Шаблон» перед тренировкой.</div>';if(fromFile&&proposal.plan.notes)html+=`<div class="notice">${esc(proposal.plan.notes)}</div>`;
+for(const ex of items){const w=workSets(ex);const previews=w.slice(0,4).map(x=>`${fmt(x.targetWeight)} × ${fmt(x.targetReps)}`).join(' · ');html+=`<div style="padding:11px 0;border-top:1px solid #314051"><b>${esc(ex.name)}</b><div class="small">${esc(previews||'Рабочие подходы не заданы')}</div>${ex.notes?`<div class="small" style="margin-top:4px">${esc(ex.notes)}</div>`:''}${ex.sourceDate?`<div class="small" style="margin-top:3px">${esc(ex.suggestWhy)} · ${esc(ex.sourceDate)}</div>`:''}</div>`;}
+html+=`<button class="button primary full" data-action="start" style="margin-top:14px">Начать и записывать подходы</button></div>`;
+return html;}
+const {done,total}=summary(s),percent=total?100*done/total:0;
+html+=`<div class="panel"><div class="row between"><div><div class="eyebrow">Рабочие подходы</div><div class="statnum">${done} <span class="muted">/ ${total}</span></div></div>${pills([[done===total&&total?'Все отмечены':'В процессе',done===total&&total?'good':'']])}</div><div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div><div class="split" style="margin-top:12px"><button class="button primary" data-action="export" data-session="${esc(s.id)}">⇧ Экспорт TXT</button><button class="button" data-action="copy" data-session="${esc(s.id)}">⧉ Копировать отчёт</button></div></div>`;
+html+=`<div class="panel"><div class="row between"><div class="grow"><b>Самочувствие / восстановление</b><div class="small">Оценка в день тренировки для будущих рекомендаций</div></div><div style="width:140px"><select data-sessionfield="recovery"><option value="" ${!s.recovery?'selected':''}>Не указано</option><option value="1" ${s.recovery==='1'?'selected':''}>1 · Плохо</option><option value="2" ${s.recovery==='2'?'selected':''}>2 · Слабо</option><option value="3" ${s.recovery==='3'?'selected':''}>3 · Обычно</option><option value="4" ${s.recovery==='4'?'selected':''}>4 · Хорошо</option><option value="5" ${s.recovery==='5'?'selected':''}>5 · Отлично</option></select></div></div></div>`;
+html+='<div class="panel no-pad">';s.exercises.forEach((ex,ei)=>{
+ const totalWork=workSets(ex).length,complete=workSets(ex).filter(isDone).length;
+ html+=`<section class="exercise"><div class="row between"><div class="grow"><div class="ex-title">${ei+1}. ${esc(ex.name)}</div><div class="exmeta">${esc(ex.unit)} · рабочие подходы ${complete}/${totalWork}</div></div>${pills([[`${complete}/${totalWork}`,totalWork&&totalWork===complete?'good':'']])}</div>${ex.notes?`<div class="hint">${esc(ex.notes)}</div>`:''}`;
+ ex.sets.forEach((row,si)=>{
+   const done=isDone(row),isWarm=row.type==='warm';
+   html+=`<div class="set ${done?'done':''}"><div class="sethd"><span class="pill ${isWarm?'':'good'}">${isWarm?'Разминка':'Рабочий'} ${si+1}</span><span class="target">План: ${fmt(row.targetWeight)} кг × ${fmt(row.targetReps)}</span></div><div class="fields"><label><span class="field-label">Вес, кг</span><input inputmode="decimal" type="number" min="0" step="0.5" placeholder="кг" data-sessfield="actualWeight" data-ex="${ei}" data-set="${si}" value="${esc(row.actualWeight)}"></label><label><span class="field-label">Повторы</span><input inputmode="numeric" type="number" min="0" step="1" placeholder="раз" data-sessfield="actualReps" data-ex="${ei}" data-set="${si}" value="${esc(row.actualReps)}"></label><label><span class="field-label">RIR ${isWarm?'· не нужен':''}</span><select data-sessfield="rir" data-ex="${ei}" data-set="${si}" ${isWarm?'disabled':''}><option value="">—</option>${[0,1,2,3,4,5].map(v=>`<option value="${v}" ${String(row.rir)===String(v)?'selected':''}>${v===5?'5+':v}</option>`).join('')}</select></label><button type="button" class="tick ${done?'active':''}" data-action="toggle" data-ex="${ei}" data-set="${si}" aria-label="${done?'Отменить':'Отметить'} подход">${done?'✓':'○'}</button></div></div>`;
+ });
+ html+=`<textarea data-exnote="${ei}" placeholder="Заметка по упражнению: техника, самочувствие, замена веса">${esc(ex.notesSession||'')}</textarea>`;
+ if(ex.suggestCode==='up')html+=`<div class="hint">План автоматически повышен на ${fmt(ex.step)} кг: ${esc(ex.suggestWhy)}.</div>`;
+ html+='</section>';
+});html+='</div>';
+html+=`<div class="panel"><div class="h">Самочувствие и итог</div><p class="small">Укажи сон, усталость, дискомфорт или причины пропуска. Эти данные попадут в TXT-отчёт.</p><textarea rows="4" data-sessionnote="1" placeholder="Например: в последних подходах тяги осталось 0–1 повтора; ноги ещё не восстановились...">${esc(s.note||'')}</textarea><div class="split" style="margin-top:12px"><button class="button primary" data-action="export" data-session="${esc(s.id)}">⇧ TXT-отчёт</button><button class="button" data-action="copy" data-session="${esc(s.id)}">⧉ Скопировать</button></div></div><p class="footnote">Сохраняется на этом устройстве автоматически. Если программа или история важны, делай резервную копию на вкладке «Настройки».</p>`;
+return html;
+}
+function planList(){const day=state.ui.day,t=state.templates[day],proposal=workoutProposal(day,state.ui.date),items=proposal.items;
+ let html=intro('План','Приоритет: план из TXT от чата → автоматические рекомендации, если TXT на эту дату отсутствует.')+(importFeedback?`<div class="notice warn">${esc(importFeedback)}</div>`:'')+`<div class="panel"><div class="h">Загрузить программу из чата</div><p class="small">Чат «План тренировок» создаёт файл .txt в формате SILA_PLAN_V1. Он может содержать сразу несколько дат и все подходы. Нажми кнопку и выбери файл в приложении «Файлы» на iPhone.</p><button class="button primary full" data-action="import-plan">↓ Загрузить план TXT</button><div class="small" style="margin-top:9px">История выполненных тренировок не изменяется. План для уже начатого дня не перезаписывается.</div></div>`;
+ const schedule=upcomingSchedule();
+ html+=`<div class="panel"><div class="row between"><div class="h">Календарь из TXT</div><span class="pill">${schedule.length} дат</span></div>`;
+ if(!schedule.length)html+='<p class="small">Пока нет загруженных тренировок. Приложение использует обычный шаблон и рекомендации по прогрессии.</p>';
+ schedule.forEach(p=>{const started=state.sessions.some(s=>s.date===p.date&&s.day===p.day);html+=`<div class="schedule-item"><div class="grow"><div class="schedule-date">${esc(D[p.day])} · ${esc(labelDate(p.date))}</div><div class="schedule-sub">${esc(p.title||'План тренировки')} · ${p.exercises.length} упр. ${started?'· уже начата':''}</div></div><button class="button sm" data-action="open-planned" data-day="${esc(p.day)}" data-date="${esc(p.date)}">Открыть</button><button class="button sm danger" data-action="remove-planned" data-date="${esc(p.date)}" title="Удалить только план этой даты" aria-label="Удалить план ${esc(p.date)}">×</button></div>`;});
+ html+='</div>';
+ html+=daytabs()+`<div class="panel"><div class="h">${proposal.source==='imported'?'Запланировано из TXT':'Автоматический план'}</div><p class="small">${esc(labelDate(state.ui.date))}. Дата меняется во вкладке «Дневник». ${proposal.source==='imported'?'Импортированные веса имеют приоритет, прогрессия здесь не применяется.':'Расчёт по завершённым тренировкам.'}</p>`;
+ items.forEach((ex,i)=>{const work=workSets(ex);let status=ex.suggestCode==='up'||ex.suggestCode==='imported'?'good':ex.suggestCode==='base'?'':'warn';html+=`<div style="padding:13px 0;border-top:1px solid #334252"><div class="row between"><b>${i+1}. ${esc(ex.name)}</b>${pills([[ex.suggestCode==='imported'?'Из TXT':ex.suggestCode==='up'?'↑ Вес':ex.suggestCode==='base'?'База':'→ Без роста',status]])}</div><div class="small" style="margin:7px 0;color:#cbd9e4">${esc(work.map(s=>`${fmt(s.targetWeight)} кг × ${fmt(s.targetReps)}`).join(' · '))}</div><div class="small">${esc(ex.suggestWhy)}</div></div>`;});
+ html+=`<button class="button primary full" data-action="tab" data-tab="train" style="margin-top:10px">Перейти к тренировке</button></div>`;
+ html+=`<div class="panel"><div class="h">Как работает увеличение</div><p class="small">Только для дат без загруженного TXT-плана.</p><div class="info-list">① Все рабочие подходы отмечены и фактические данные заполнены.<br>② Вес и повторы не ниже целей.<br>③ В каждом рабочем подходе RIR ≥ 2.<br>④ Если самочувствие прошлого раза 1–2 из 5, увеличение не предлагается.<br>⑤ Шаг увеличения берётся из настроек упражнения.<br>Иначе вес сохраняется; пустые RIR не считаются «лёгкой» тренировкой.</div></div>`;
+ return html;
+}
+function renderTemplate(){const d=state.ui.day,t=state.templates[d];let html=intro('Шаблон','Можно менять упражнения, целевые веса, точные повторы и шаг повышения. Изменения повлияют на новые тренировки.')+daytabs();
+ if(!t.verified)html+='<div class="notice warn">Шаблон этого дня заполнен частично. Из известных данных перенесены упражнения; недостающие веса и повторы оставлены пустыми, чтобы не придумывать результаты.</div>';
+ html+=`<div class="notice">Изменение шаблона не переписывает уже записанные тренировки. Новый план начнётся с исправленных целей.</div>`;
+ t.exercises.forEach((ex,ei)=>{html+=`<div class="panel editor"><div class="row between"><div class="grow"><div class="eyebrow">Упражнение ${ei+1}</div><input type="text" data-template="name" data-ex="${ei}" value="${esc(ex.name)}" aria-label="Название упражнения"></div><button class="button danger sm" data-action="remove-ex" data-ex="${ei}" title="Удалить упражнение">✕</button></div><div class="split" style="margin:10px 0"><label class="small">Единица веса<input type="text" data-template="unit" data-ex="${ei}" value="${esc(ex.unit)}"></label><label class="small">Шаг увеличения, кг<input type="number" min="0" step="0.5" data-template="step" data-ex="${ei}" value="${esc(ex.step)}"></label></div><div class="small" style="margin:12px 0 5px">Подходы: тип / плановый вес / повторы</div>`;
+ ex.sets.forEach((s,si)=>{html+=`<div class="edit-row"><select data-template-set="type" data-ex="${ei}" data-set="${si}"><option value="warm" ${s.type==='warm'?'selected':''}>Разминка</option><option value="work" ${s.type==='work'?'selected':''}>Рабочий</option></select><input type="number" step="0.5" min="0" placeholder="кг" aria-label="Плановый вес" data-template-set="weight" data-ex="${ei}" data-set="${si}" value="${esc(s.weight)}"><input type="number" min="0" step="1" placeholder="повт." aria-label="Плановые повторы" data-template-set="reps" data-ex="${ei}" data-set="${si}" value="${esc(s.reps)}"><button class="iconbtn" data-action="remove-set" data-ex="${ei}" data-set="${si}" aria-label="Удалить подход">−</button></div>`;});
+ html+=`<div class="editor-actions"><button class="button sm" data-action="add-set" data-ex="${ei}" data-type="warm">+ Разминка</button><button class="button sm" data-action="add-set" data-ex="${ei}" data-type="work">+ Рабочий</button><button class="button sm minor" data-action="move-ex" data-ex="${ei}" data-dir="-1" ${ei===0?'disabled':''}>↑</button><button class="button sm minor" data-action="move-ex" data-ex="${ei}" data-dir="1" ${ei===t.exercises.length-1?'disabled':''}>↓</button></div></div>`;});
+ html+=`<button class="button primary full" data-action="add-ex">+ Добавить упражнение</button><div class="panel"><div class="h">Уточнение шаблона</div><p class="small">После заполнения пустых целей можно отметить этот день как проверенный.</p><button class="button full" data-action="verify">${t.verified?'✓ Помечен как проверенный':'Отметить шаблон проверенным'}</button></div>`;return html;
+}
+function renderHistory(){const list=[...state.sessions].sort((a,b)=>b.date.localeCompare(a.date));let html=intro('История','Любую тренировку можно открыть, исправить или выгрузить в TXT.');
+if(!list.length)html+='<div class="panel">Пока нет записанных тренировок. Создай первую во вкладке «Дневник».</div>';
+list.forEach(s=>{const x=summary(s),pct=x.total?Math.round(100*x.done/x.total):0;html+=`<button class="history-item" data-action="open-history" data-session="${esc(s.id)}"><span><span class="label">${esc(D[s.day])} · ${esc(labelDate(s.date))}</span><br><span class="small">${x.done}/${x.total} рабочих подходов · ${pct}%</span></span><span style="color:var(--lime);font-size:24px">›</span></button>`;});return html;}
+function renderSettings(){return intro('Настройки','История и загруженные планы хранятся только на этом iPhone/в этом браузере, без облачной синхронизации.')+`<div class="panel"><div class="h">Таймер отдыха</div><label class="small">Секунды после отмеченного рабочего подхода<input type="number" min="0" max="900" step="15" id="restInput" value="${esc(state.settings.restSec)}" style="margin-top:8px"></label><div class="small" style="margin-top:8px">0 — выключить. На заблокированном экране звуковое уведомление не гарантируется.</div></div><div class="panel"><div class="h">Резервная копия</div><p class="small">Сохрани историю, шаблоны и календарь в JSON, особенно перед обновлением iPhone или очисткой Safari.</p><div class="stack"><button class="button primary full" data-action="backup">Скачать резервную копию JSON</button><button class="button full" data-action="import">Загрузить резервную копию JSON</button></div></div><div class="panel"><div class="h">Проверка исходных планов</div><div class="info-list">Четверг перенесён из актуального согласованного плана. Суббота: точно заполнен наклонный жим. Остальные подходы субботы и вторника нужно сверить с исходными таблицами. Все шаблоны редактируются.</div></div><div class="panel"><div class="h">Важно о данных</div><p class="small">TXT-программу нужно скачать из чата и вручную импортировать во вкладке «План». Ни приложение, ни алгоритм не отправляют записи в ChatGPT автоматически. Для разбора нужно вручную поделиться TXT в чате «План тренировок». При удалении данных сайта без JSON-копии журнал может быть утрачен.</p></div>`;}
+function render(){let tab=state.ui.tab||'train';let body=tab==='train'?renderTrain():tab==='plan'?planList():tab==='template'?renderTemplate():tab==='history'?renderHistory():renderSettings();
+ document.querySelector('#app').innerHTML=(currentError?`<div class="notice warn">${esc(currentError)}</div>`:'')+body;
+ const nav=[['train','▣','Дневник'],['plan','↗','План'],['template','☷','Шаблон'],['history','◷','История'],['settings','⚙','Настройки']];document.querySelector('#navigation').innerHTML=nav.map(([key,ic,label])=>`<button class="${key===tab?'active':''}" data-action="tab" data-tab="${key}" aria-label="${label}"><span class="navicon">${ic}</span>${label}</button>`).join('');
+ renderTimer();
+}
+function touchTemplate(){const t=state.templates[state.ui.day];t.version=(Number(t.version)||0)+1;t.verified=false;save();}
+function setTab(tab){state.ui.tab=tab;save();render();window.scrollTo({top:0,behavior:'instant'});}
+function resetTimer(){timerEnd=0;renderTimer();}
+function startTimer(){const sec=n(state.settings.restSec);if(!Number.isFinite(sec)||sec<=0)return;timerEnd=Date.now()+sec*1000;renderTimer();}
+function renderTimer(){const d=document.querySelector('#restDock');if(!timerEnd||Date.now()>=timerEnd){if(timerEnd){timerEnd=0;toast('Время отдыха истекло');}d.innerHTML='';return;}const remain=Math.ceil((timerEnd-Date.now())/1000);d.innerHTML=`<div class="sticky-rest"><span>⏱ Отдых ${String(Math.floor(remain/60)).padStart(2,'0')}:${String(remain%60).padStart(2,'0')}</span><button class="button sm" style="background:#dceccb;color:#234" data-action="stop-timer">Стоп</button></div>`;}
+function report(s){const lines=[];lines.push(`ОТЧЁТ О ТРЕНИРОВКЕ — ${D[s.day].toUpperCase()}`);lines.push(`Дата: ${s.date} (${labelDate(s.date)})`);lines.push(`Источник плана: ${s.source==='imported'?'TXT из чата':'Шаблон / автоматическая прогрессия'}`);if(s.planTitle)lines.push(`Название плана: ${s.planTitle}`);if(s.planNotes)lines.push(`Указания к тренировке: ${s.planNotes}`);const sum=summary(s);lines.push(`Факт: ${sum.done} из ${sum.total} рабочих подходов выполнено`);lines.push(`Восстановление: ${s.recovery?`${s.recovery}/5`:'не указано'}`);lines.push('');
+ s.exercises.forEach((ex,idx)=>{lines.push(`${idx+1}. ${ex.name} [${ex.unit}]`);ex.sets.forEach((row,j)=>{
+  const tag=row.type==='warm'?'РАЗМИНКА':'РАБОЧИЙ';const plan=`${fmt(row.targetWeight)} кг × ${fmt(row.targetReps)}`;let fact='НЕ ВЫПОЛНЕН / НЕ ПОДТВЕРЖДЁН';if(isDone(row))fact=`${fmt(row.actualWeight)} кг × ${fmt(row.actualReps)}${row.type==='work'&&has(row.rir)?`; RIR ${fmt(row.rir)}`:''}`;else if(has(row.actualWeight)||has(row.actualReps))fact=`НЕ ПОДТВЕРЖДЁН (внесено: ${fmt(row.actualWeight)} кг × ${fmt(row.actualReps)} повт.; галочка отсутствует)`;
+  lines.push(`  ${tag} ${j+1}: план ${plan} | факт ${fact}`);
+ });if(ex.notes?.trim())lines.push(`  Указания плана: ${ex.notes.trim()}`);if(ex.notesSession?.trim())lines.push(`  Комментарий: ${ex.notesSession.trim()}`);lines.push('');});
+ lines.push('САМОЧУВСТВИЕ / ПРИМЕЧАНИЯ');lines.push(s.note?.trim()||'Не указано');lines.push('');
+ lines.push('ДАННЫЕ ДЛЯ ПЛАНА СЛЕДУЮЩЕЙ ТРЕНИРОВКИ');s.exercises.forEach(ex=>{const r=assess(ex);lines.push(`- ${ex.name}: ${r.reason}.`);});
+ lines.push('');lines.push('Примечание: подход засчитывается только при заполненных весе/повторах и явной отметке выполнения. Рекомендации приложения не заменяют разбор прогрессии и восстановления в чате.');return lines.join('\r\n');}
+function makeFile(content,name,type){return new File(['\ufeff',content],name,{type});}
+async function exportSession(s){if(!s)return toast('Нет тренировки для экспорта');const file=makeFile(report(s),`Тренировка_${s.date}_${s.day}.txt`,'text/plain;charset=utf-8');
+ try{if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:`Тренировка ${s.date}`});return;}}catch(e){if(e.name==='AbortError')return;}
+ downloadFile(file);toast('TXT сформирован. Прикрепи файл в чат «План тренировок».');}
+function downloadFile(file){const url=URL.createObjectURL(file);const a=document.createElement('a');a.href=url;a.download=file.name;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},1500);}
+async function copySession(s){if(!s)return;const content=report(s);try{await navigator.clipboard.writeText(content);toast('Отчёт скопирован — можно вставить в чат');}catch(e){const ta=document.createElement('textarea');ta.value=content;document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();toast(ok?'Отчёт скопирован':'Не удалось скопировать отчёт');}}
+// TXT-программа — обычный текстовый файл с JSON внутри. Не требует сервера или ChatGPT API.
+function validatePlan(payload){
+ if(!payload||payload.format!=='SILA_PLAN_V1'||!Array.isArray(payload.workouts))throw Error('Нужен TXT с JSON и полями format: SILA_PLAN_V1, workouts: [...]');
+ if(!payload.workouts.length||payload.workouts.length>120)throw Error('План должен содержать от 1 до 120 тренировок');
+ const keys=new Set(),plans=[];
+ for(let wi=0;wi<payload.workouts.length;wi++){
+  const w=payload.workouts[wi],scope=`Тренировка ${wi+1}`;
+  if(!w||typeof w!=='object')throw Error(`${scope}: неверный объект`);
+  const date=String(w.date||'');
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(date))throw Error(`${scope}: дата нужна в формате ГГГГ-ММ-ДД`);
+  const parsed=new Date(`${date}T12:00:00`);
+  if(!Number.isFinite(parsed.getTime())||isoDate(parsed)!==date)throw Error(`${scope}: несуществующая дата ${date}`);
+  const inferred=Object.keys(WEEK).find(x=>WEEK[x]===parsed.getDay());
+  if(!inferred)throw Error(`${scope}: ${date} не вторник, не четверг и не суббота`);
+  const day=w.day?String(w.day):inferred;
+  if(day!==inferred)throw Error(`${scope}: день ${day} не соответствует дате ${date} (ожидается ${inferred})`);
+  if(keys.has(date))throw Error(`Повторяющаяся дата ${date}`);
+  keys.add(date);
+  if(!Array.isArray(w.exercises)||!w.exercises.length||w.exercises.length>35)throw Error(`${scope}: нужно от 1 до 35 упражнений`);
+  const exercises=w.exercises.map((ex,ei)=>{
+   const loc=`${scope}, упражнение ${ei+1}`;
+   if(!ex||typeof ex.name!=='string'||!ex.name.trim()||ex.name.length>150)throw Error(`${loc}: нужно название до 150 символов`);
+   const name=ex.name.trim(),unit=typeof ex.unit==='string'&&ex.unit.trim()?ex.unit.trim():'кг';
+   if(unit.length>35)throw Error(`${loc}: слишком длинная единица измерения`);
+   const step=ex.step===undefined?0:n(ex.step);
+   if(!Number.isFinite(step)||step<0||step>100)throw Error(`${loc}: step должен быть от 0 до 100 кг`);
+   if(!Array.isArray(ex.sets)||!ex.sets.length||ex.sets.length>30)throw Error(`${loc}: нужно от 1 до 30 подходов`);
+   const sets=ex.sets.map((r,si)=>{
+    const place=`${loc}, подход ${si+1}`;
+    if(!r||!['warm','work'].includes(r.type))throw Error(`${place}: type должен быть warm или work`);
+    const weight=n(r.weight),reps=n(r.reps);
+    if(!Number.isFinite(weight)||weight<0||weight>1000)throw Error(`${place}: нужен вес от 0 до 1000 кг, без пустых значений`);
+    if(!Number.isInteger(reps)||reps<1||reps>200)throw Error(`${place}: нужны целые повторы от 1 до 200`);
+    return {type:r.type,weight:String(weight),reps:String(reps)};
+   });
+   if(!sets.some(x=>x.type==='work'))throw Error(`${loc}: нет рабочего подхода`);
+   const id=typeof ex.id==='string'&&/^[a-zA-Z0-9_-]{1,50}$/.test(ex.id)?ex.id:`txt_${ei}_${name.toLowerCase().replace(/[^a-zа-яё0-9]+/g,'_').slice(0,30)}`;
+   return exercise(id,name,unit,step,sets,typeof ex.notes==='string'?ex.notes.slice(0,600):'');
+  });
+  plans.push({date,day,title:typeof w.title==='string'?w.title.slice(0,120):'',notes:typeof w.notes==='string'?w.notes.slice(0,1000):'',exercises,source:'chat-txt'});
+ }
+ return plans;
+}
+async function importPlan(file){
+ if(!file)return;
+ const input=document.querySelector('#planImportFile');
+ try{
+  if(file.size>1024*1024)throw Error('Файл больше 1 МБ — раздели программу на части');
+  const raw=(await file.text()).replace(/^\ufeff/,'').trim();
+  let obj;try{obj=JSON.parse(raw);}catch(e){throw Error('Неверный формат: TXT должен содержать JSON без пояснений, разметки и ```');}
+  const plans=validatePlan(obj),started=plans.filter(p=>state.sessions.some(s=>s.date===p.date&&s.day===p.day));
+  const incoming=plans.filter(p=>!started.includes(p)),replaced=incoming.filter(p=>state.planned[p.date]);
+  if(!incoming.length)throw Error('Все даты уже имеют начатые тренировки; ничего не изменено');
+  if(replaced.length&&!confirm(`Заменить ${replaced.length} ранее загруженных планов на те же даты? Внесённые результаты не изменятся.`))return;
+  incoming.forEach(p=>{state.planned[p.date]=p;});
+  state.ui.tab='plan';
+  if(incoming[0]){const next=[...incoming].sort((a,b)=>a.date.localeCompare(b.date))[0];state.ui.day=next.day;state.ui.date=next.date;}
+  importFeedback='';save();render();toast(`План загружен: ${incoming.length} тренировок${started.length?`; пропущено начатых: ${started.length}`:''}.`);
+ }catch(e){importFeedback='Ошибка TXT: '+e.message;state.ui.tab='plan';render();toast(importFeedback);}
+ finally{input.value='';}
+}
+function exportBackup(){const file=makeFile(JSON.stringify({format:'sila-dnevnik',version:1,savedAt:new Date().toISOString(),data:state},null,2),`Сила_резервная_копия_${isoDate(new Date())}.json`,'application/json;charset=utf-8');downloadFile(file);}
+async function importBackup(file){if(!file)return;try{const payload=JSON.parse((await file.text()).replace(/^\ufeff/,''));if(payload.format!=='sila-dnevnik'||!payload.data?.templates?.thu?.exercises||!Array.isArray(payload.data.sessions)||!payload.data.settings)throw Error('Это не резервная копия СИЛА');if(!confirm('Заменить текущий журнал, календарь, историю и шаблоны данными из копии?'))return;state=payload.data;state.ui=state.ui||defaults().ui;state.planned=state.planned||{};save();render();toast('Копия восстановлена');}catch(e){toast('Ошибка импорта: '+e.message);}document.querySelector('#importFile').value='';}
+function action(btn){const a=btn.dataset.action,day=btn.dataset.day,tab=btn.dataset.tab,ei=Number(btn.dataset.ex),si=Number(btn.dataset.set),ex=state.templates[state.ui.day]?.exercises?.[ei];
+ if(a==='tab')return setTab(tab);
+ if(a==='import-plan'){document.querySelector('#planImportFile').click();return;}
+ if(a==='open-planned'){state.ui.day=day;state.ui.date=btn.dataset.date;state.ui.tab='train';save();render();window.scrollTo(0,0);return;}
+ if(a==='remove-planned'){const date=btn.dataset.date;if(state.sessions.some(s=>s.date===date)){return toast('Тренировка уже начата. Запись в истории сохранена.');}if(!confirm(`Удалить план ${date} из календаря? История и шаблоны не изменятся.`))return;delete state.planned[date];save();render();toast('План даты удалён');return;}
+ if(a==='day'){state.ui.day=day;state.ui.date=nextDate(day);save();render();return;}
+ if(a==='start')return startSession();
+ if(a==='toggle'){const s=currentSession(),r=s?.exercises?.[ei]?.sets?.[si];if(!r)return;if(isDone(r)){r.done=false;save();render();return;}
+ if(!has(r.actualWeight)||n(r.actualWeight)<0||!has(r.actualReps)||n(r.actualReps)<0){return toast('Укажи фактический вес и повторы перед подтверждением подхода');}
+ r.done=true;save();render();if(r.type==='work')startTimer();return;}
+ if(a==='export')return exportSession(state.sessions.find(s=>s.id===btn.dataset.session));
+ if(a==='copy')return copySession(state.sessions.find(s=>s.id===btn.dataset.session));
+ if(a==='open-history'){const s=state.sessions.find(x=>x.id===btn.dataset.session);if(!s)return;state.ui.day=s.day;state.ui.date=s.date;state.ui.tab='train';save();render();window.scrollTo(0,0);return;}
+ if(a==='stop-timer')return resetTimer();
+ if(a==='add-ex'){state.templates[state.ui.day].exercises.push(exercise('custom_'+uid(),'Новое упражнение','кг',2.5,[set('work','','')]));touchTemplate();render();return;}
+ if(a==='remove-ex'){if(!confirm(`Удалить «${ex.name}» из шаблона? История не изменится.`))return;state.templates[state.ui.day].exercises.splice(ei,1);touchTemplate();render();return;}
+ if(a==='move-ex'){let j=ei+Number(btn.dataset.dir),arr=state.templates[state.ui.day].exercises;if(j<0||j>=arr.length)return;[arr[ei],arr[j]]=[arr[j],arr[ei]];touchTemplate();render();return;}
+ if(a==='add-set'){ex.sets.push(set(btn.dataset.type,'',''));touchTemplate();render();return;}
+ if(a==='remove-set'){if(ex.sets.length===1){toast('Оставь хотя бы один подход');return;}ex.sets.splice(si,1);touchTemplate();render();return;}
+ if(a==='verify'){const incomplete=state.templates[state.ui.day].exercises.some(x=>workSets(x).some(s=>!has(s.weight)||!has(s.reps)));if(incomplete)return toast('Сначала заполни вес и повторы каждого рабочего подхода');state.templates[state.ui.day].verified=true;save();render();toast('Шаблон помечен как проверенный');return;}
+ if(a==='backup')return exportBackup();
+ if(a==='import'){document.querySelector('#importFile').click();return;}
+}
+function edited(el){const s=currentSession();if(el.matches('[data-date]')){const v=el.value;if(!v)return;state.ui.date=v;save();render();return;}
+ if(el.dataset.sessfield&&s){const row=s.exercises[Number(el.dataset.ex)]?.sets[Number(el.dataset.set)];if(!row)return;row[el.dataset.sessfield]=el.value; if(row.done&&!isDone(row))row.done=false;save();return;}
+ if(el.hasAttribute('data-exnote')&&s){s.exercises[Number(el.dataset.ex)].notesSession=el.value;save();return;}
+ if(el.hasAttribute('data-sessionnote')&&s){s.note=el.value;save();return;}
+ if(el.dataset.sessionfield&&s){s[el.dataset.sessionfield]=el.value;save();return;}
+ if(el.dataset.template){const ex=state.templates[state.ui.day].exercises[Number(el.dataset.ex)];if(!ex)return;ex[el.dataset.template]=el.dataset.template==='step'?Math.max(0,n(el.value)||0):el.value;touchTemplate();return;}
+ if(el.dataset.templateSet){const s=state.templates[state.ui.day].exercises[Number(el.dataset.ex)]?.sets[Number(el.dataset.set)];if(!s)return;s[el.dataset.templateSet]=el.value;touchTemplate();return;}
+ if(el.id==='restInput'){state.settings.restSec=Math.max(0,Math.min(900,n(el.value)||0));save();return;}}
+ document.addEventListener('click',ev=>{const target=ev.target.closest('[data-action]');if(target)action(target);});
+ document.addEventListener('change',ev=>edited(ev.target));
+ document.addEventListener('input',ev=>{if(ev.target.matches('[data-sessionnote],[data-exnote]'))edited(ev.target);});
+ document.querySelector('#importFile').addEventListener('change',ev=>importBackup(ev.target.files[0]));
+ document.querySelector('#planImportFile').addEventListener('change',ev=>importPlan(ev.target.files[0]));
+ setInterval(renderTimer,1000);
+ if('serviceWorker'in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+ render();
+})();
+</script>
+</body>
+</html>
