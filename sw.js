@@ -1,4 +1,4 @@
-const CACHE='set-training-v10-20261016';
+const CACHE='set-training-v1-0-1-20261016';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./apple-touch-icon.png','./icon-192.png','./icon-512.png','./equipment-dumbbell.png','./equipment-plates.png','./equipment-weight-stack.png','./equipment-pullup-bar.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>/^(sila-dnevnik-|set-training-)/.test(k)&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});

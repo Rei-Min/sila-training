@@ -10,7 +10,7 @@
 <meta name="description" content="СЕТ: тренировки, прогрессия, рекорды с иллюстрациями, вес тела и TXT-отчёты">
 <link rel="manifest" href="manifest.webmanifest?v=10">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=10">
-<title>СЕТ · Дневник тренировок v1.0</title>
+<title>СЕТ · Дневник тренировок v1.0.1</title>
 <style>
 :root{--bg:#0b111a;--panel:#151e2b;--panel2:#1c2938;--text:#eaf2f9;--muted:#91a3b6;--line:#334252;--lime:#bcf46a;--deep:#243c25;--warn:#f5c76d;--danger:#ff9292;--safe-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}html{background:var(--bg);color:var(--text)}body{margin:0;font:15px/1.43 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;min-height:100vh;padding-bottom:calc(92px + var(--safe-bottom));background:radial-gradient(ellipse 700px 500px at 50% -240px,#233b35 0%,transparent 95%),var(--bg)}button,input,select,textarea{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}input,select,textarea{color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:10px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--lime)}input[type=number]{min-width:0;width:100%;padding:10px 9px;font-variant-numeric:tabular-nums}textarea{width:100%;resize:vertical;padding:12px;min-height:62px}input[type=date]{padding:10px 10px;width:100%;min-height:44px;color-scheme:dark}input[type=text]{padding:10px;min-height:42px;width:100%}select{padding:9px 5px;min-width:0;width:100%;color-scheme:dark}input::placeholder,textarea::placeholder{color:#65778b}
@@ -123,6 +123,18 @@ body::after{content:"";position:fixed;z-index:13;top:0;left:0;right:0;height:cal
 .weight-form{grid-template-columns:1fr}.weight-form label,.weight-form input{min-width:0}.weight-form .button{grid-column:1}
 @media(max-width:375px){.topline>.pill{display:none}.big{font-size:17px}.pageword{font-size:17px}.range-buttons button{font-size:10px}.metric-val{font-size:18px}.metric-box.secondary .metric-val{font-size:16px}.calendar-card{padding:11px}.calendar-grid{gap:3px}.cal-item{padding:7px 1px}}
 
+
+/* СЕТ 1.0.1: фирменная геометрия №2 и адаптация заголовков */
+.setword-logo{display:block;flex:0 0 auto;width:86px;height:29px;color:var(--lime);overflow:visible;vertical-align:middle}
+.big{display:flex;align-items:center;gap:0;min-width:0;white-space:nowrap;font-size:18px;line-height:1.15}
+.big .pageword{color:#f6f6f4 !important;white-space:nowrap;font-size:18px;font-weight:850;letter-spacing:-.55px}
+.big .slash-accent{color:var(--lime) !important;font-size:18px;font-weight:900;white-space:pre}
+.month-head{display:grid !important;grid-template-columns:minmax(0,1fr) auto;gap:5px;align-items:center;min-width:0}
+.month-head .h{font-size:clamp(11px,3.25vw,15px);font-weight:800;line-height:1.15;white-space:nowrap;min-width:0;margin:0;letter-spacing:-.4px;color:#f6f6f4}
+.month-controls{display:flex;align-items:center;justify-content:flex-end;gap:3px;min-width:0;white-space:nowrap;flex-wrap:nowrap}
+.month-controls>b{font-size:clamp(10px,2.9vw,12px);white-space:nowrap;max-width:none;line-height:1.2;color:#f1f2ee;font-weight:800;text-align:center;min-width:0}
+.month-controls>button{flex:0 0 24px;width:24px;height:30px}
+@media(max-width:375px){.setword-logo{width:78px;height:27px}.big .pageword{font-size:16px}.big .slash-accent{font-size:16px}.month-head{gap:3px}.month-head .h{font-size:11px;letter-spacing:-.5px}.month-controls>b{font-size:10px}.month-controls>button{flex-basis:20px;width:20px;height:28px}}
 </style>
 </head>
 <body><main id="app" class="wrap"></main><nav id="navigation" class="topnav" aria-label="Навигация"></nav><div id="restDock"></div><div id="toast" class="toast hidden" role="status"></div><input type="file" accept=".json,application/json" id="importFile" class="hidden" aria-label="Загрузить резервную копию"><input type="file" accept=".txt,text/plain" id="planImportFile" class="hidden" aria-label="Загрузить TXT с программой">
@@ -250,7 +262,7 @@ function weekCalendar(dateStr){
 function summary(s){let t=0,done=0;for(const ex of s.exercises){for(const row of workSets(ex)){t++;if(isDone(row))done++;}}return {done,total:t};}
 const daytabs=()=>`<div class="day-tabs">${Object.keys(D).map(day=>`<button data-action="day" data-day="${day}" class="${state.ui.day===day?'selected':''}">${D[day]}</button>`).join('')}</div>`;
 const pills=(arr)=>arr.map(([text,cls])=>`<span class="pill ${cls||''}">${esc(text)}</span>`).join(' ');
-function intro(title,caption){return `<div class="topline"><div class="brand"><div class="brandicon" aria-hidden="true"></div><div><div class="eyebrow">Тренировочный дневник</div><div class="big"><span class="setword">СЕТ</span><span class="slash-accent"> / </span><span class="pageword">${esc(title)}</span></div></div></div><span class="pill">Локально</span></div>${caption?`<p class="muted" style="margin:14px 0 0">${caption}</p>`:''}`;}
+function intro(title,caption){return `<div class="topline"><div class="brand"><div class="brandicon" aria-hidden="true"></div><div><div class="eyebrow">Тренировочный дневник</div><div class="big"><svg class="setword-logo" viewBox="0 0 158 52" role="img" aria-label="СЕТ" xmlns="http://www.w3.org/2000/svg"><title>СЕТ</title><g fill="none" stroke="currentColor" stroke-width="9.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M43 9H13V43H43"/><path d="M59 9V43M59 9H91M59 26H86M59 43H91"/><path d="M108 9H149M128.5 9V43"/></g></svg><span class="slash-accent"> / </span><span class="pageword">${esc(title)}</span></div></div></div><span class="pill">Локально</span></div>${caption?`<p class="muted" style="margin:14px 0 0">${caption}</p>`:''}`;}
 function renderTrain(){const s=currentSession(),day=state.ui.day,date=state.ui.date;
 let html=intro('Дневник','')+daytabs();
 html+=weekCalendar(date);
@@ -306,7 +318,7 @@ function monthlyCalendar(){
  const ym=Number.isInteger(year)&&month>=1&&month<=12?new Date(year,month-1,1,12):new Date();
  const prefix=`${ym.getFullYear()}-${String(ym.getMonth()+1).padStart(2,'0')}`;
  const start=(ym.getDay()+6)%7, days=new Date(ym.getFullYear(),ym.getMonth()+1,0).getDate();
- const monthName=ym.toLocaleDateString('ru-RU',{month:'long',year:'numeric'});
+ const monthName=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'][ym.getMonth()]+' '+ym.getFullYear();
  const statuses=new Map();
  for(const p of Object.values(state.planned||{})){if(p?.date?.startsWith(prefix))statuses.set(p.date,'planned');}
  for(const sess of state.sessions){if(!sess.date?.startsWith(prefix))continue;const x=summary(sess);statuses.set(sess.date,x.total>0&&x.done===x.total?'complete': 'partial');}
