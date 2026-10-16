@@ -8,9 +8,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="СЕТ">
 <meta name="description" content="СЕТ: тренировки, прогрессия, рекорды с иллюстрациями, вес тела и TXT-отчёты">
-<link rel="manifest" href="manifest.webmanifest?v=09">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=09">
-<title>СЕТ · Дневник тренировок v0.9</title>
+<link rel="manifest" href="manifest.webmanifest?v=10">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=10">
+<title>СЕТ · Дневник тренировок v1.0</title>
 <style>
 :root{--bg:#0b111a;--panel:#151e2b;--panel2:#1c2938;--text:#eaf2f9;--muted:#91a3b6;--line:#334252;--lime:#bcf46a;--deep:#243c25;--warn:#f5c76d;--danger:#ff9292;--safe-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}html{background:var(--bg);color:var(--text)}body{margin:0;font:15px/1.43 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;min-height:100vh;padding-bottom:calc(92px + var(--safe-bottom));background:radial-gradient(ellipse 700px 500px at 50% -240px,#233b35 0%,transparent 95%),var(--bg)}button,input,select,textarea{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}input,select,textarea{color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:10px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--lime)}input[type=number]{min-width:0;width:100%;padding:10px 9px;font-variant-numeric:tabular-nums}textarea{width:100%;resize:vertical;padding:12px;min-height:62px}input[type=date]{padding:10px 10px;width:100%;min-height:44px;color-scheme:dark}input[type=text]{padding:10px;min-height:42px;width:100%}select{padding:9px 5px;min-width:0;width:100%;color-scheme:dark}input::placeholder,textarea::placeholder{color:#65778b}
@@ -101,6 +101,28 @@ body::after{content:"";position:fixed;z-index:13;top:0;left:0;right:0;height:cal
 @media(max-width:430px){.record-row{gap:10px;padding:8px;margin:9px 0}.record-thumb{width:90px;height:84px;flex-basis:90px}.record-name{font-size:13px}.record-number{font-size:25px}}
 @media(max-width:350px){.record-thumb{width:75px;height:75px;flex-basis:75px}.record-name{font-size:12px}.record-number{font-size:23px}}
 
+
+/* СЕТ v1.0 — точный мобильный интерфейс для iPhone 14 Pro (393 CSS px) */
+*,*::before,*::after{box-sizing:border-box}html,body,#app{width:100%;max-width:100%;overflow-x:clip}
+.wrap{position:relative;min-width:0;padding-left:12px;padding-right:12px}
+.topline{min-width:0;gap:7px;align-items:center;flex-wrap:nowrap}.brand{min-width:0;flex:1;gap:8px;align-items:center}.brand>div:last-child{min-width:0}.brandicon{flex:0 0 35px;width:35px;height:35px;border-radius:10px}
+.topline>.pill{font-size:9px;flex-shrink:0;padding:5px 7px}
+.topline .eyebrow{font-size:8px;letter-spacing:.105em;line-height:1.15;white-space:nowrap}
+.big{display:flex;align-items:baseline;gap:0;font-size:18px;font-weight:840;line-height:1.1;letter-spacing:-.6px;white-space:nowrap;overflow:visible}
+.setword{font-family:Arial,Helvetica,sans-serif;letter-spacing:.015em;font-size:20px;font-weight:900;color:var(--lime)}.slash-accent{white-space:pre;color:var(--lime);font-weight:900}.pageword{font-size:18px;letter-spacing:-.55px;color:#f3f4f4 !important}
+.calendar-edit{background:transparent;border:1.5px solid rgba(200,245,111,.5);border-radius:11px;color:var(--lime);flex:0 0 41px}
+.calendar-edit .calendar-outline{width:23px;height:23px}.calendar-native-input{cursor:pointer}
+.range-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;flex-wrap:nowrap;width:100%}
+.range-buttons button{padding:8px 0;font-size:11px;min-width:0;white-space:nowrap;text-align:center;min-height:36px;border-radius:10px}
+.metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.metric-box{min-width:0;padding:12px 9px}.metric-label-top{font-size:9px;letter-spacing:.035em;white-space:normal;min-height:12px}.metric-val{font-size:20px;font-weight:850;white-space:nowrap;letter-spacing:-.5px;line-height:1.18}.metric-val.date-val,.metric-box.secondary .metric-val{font-size:17px;letter-spacing:-.6px}.metric-label{font-size:10px;line-height:1.25}
+.panel{min-width:0;padding:13px}.panel .h{font-size:17px}.progress-toolbar label{min-width:0}.progress-toolbar select{font-size:14px}.reps-weight-label{display:block;margin-top:12px}.reps-weight-label select{height:41px;margin-top:6px}
+.chart-wrap{min-width:0;padding:6px 6px 0}.chart-wrap svg{min-height:0}.average-bar{border:1px solid #3b4933;background:linear-gradient(135deg,#263220,#1c231c);border-radius:12px;display:flex;gap:6px;justify-content:space-between;align-items:center;margin-top:10px;padding:11px 12px}.average-bar span{display:flex;flex-direction:column;min-width:0;font-size:12px}.average-bar small{font-size:10px;color:#aeb9a9}.average-bar strong{color:var(--lime);white-space:nowrap;font-size:18px}.avg-legend{color:#bdec9a}
+.schedule-item>.grow{min-width:0}.schedule-item{gap:5px;align-items:flex-start}.schedule-item .button.sm{padding:7px 9px;font-size:10px;flex:0 0 auto}.schedule-date{font-size:12px}.schedule-sub{font-size:11px}.schedule-preview{border-top:1px solid #34383d;padding:10px 0}.schedule-preview b{font-size:13px}
+.month-head{align-items:center;gap:6px}.month-head .h{font-size:16px}.month-controls{display:flex;gap:3px;align-items:center}.month-controls>b{font-size:11px;text-align:center;max-width:106px;line-height:1.2;text-transform:capitalize}.month-controls>button{width:28px;height:30px;border:1px solid #3e4347;background:#242729;color:var(--lime);font-size:21px;border-radius:8px;padding:0}.month-calendar{margin-top:13px}.month-weekdays,.month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.month-weekdays>span{text-align:center;color:#979b9e;font-size:10px}.month-grid{margin-top:8px}.month-day{min-width:0;min-height:42px;border:1px solid #30363a;border-radius:9px;background:#212427;color:#bcc1c3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;position:relative;padding:2px;font-size:14px;font-weight:800}.month-day.current{border-color:#c8f56f}.month-day.complete{color:#d5f7a6;background:#2a3728}.month-day.partial{color:#f5cf98;background:#382e24}.month-day.planned{color:#c5cad2;background:#2a2e33}.month-day i{display:block;width:5px;height:5px;border-radius:50%;background:#c8f56f}.month-day.partial i{background:#ffc16d}.month-day.planned i{background:#9ea4aa}.calendar-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:10px;color:#b2b7bc}.calendar-legend span{display:flex;align-items:center;gap:5px}.calendar-legend i{height:8px;width:8px;border-radius:50%;background:#c8f56f}.calendar-legend .lg-partial{background:#ffc16d}.calendar-legend .lg-planned{background:#9ea4aa}
+.period-dates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:10px 0 14px}.period-dates label{min-width:0}.period-dates input{display:block;width:100%;max-width:100%;min-width:0;margin-top:5px;font-size:13px;line-height:1.2;color:var(--lime);background:#232629;padding:8px 4px;min-height:39px;border-radius:8px}.period-dates input::-webkit-date-and-time-value{min-width:0}
+.weight-form{grid-template-columns:1fr}.weight-form label,.weight-form input{min-width:0}.weight-form .button{grid-column:1}
+@media(max-width:375px){.topline>.pill{display:none}.big{font-size:17px}.pageword{font-size:17px}.range-buttons button{font-size:10px}.metric-val{font-size:18px}.metric-box.secondary .metric-val{font-size:16px}.calendar-card{padding:11px}.calendar-grid{gap:3px}.cal-item{padding:7px 1px}}
+
 </style>
 </head>
 <body><main id="app" class="wrap"></main><nav id="navigation" class="topnav" aria-label="Навигация"></nav><div id="restDock"></div><div id="toast" class="toast hidden" role="status"></div><input type="file" accept=".json,application/json" id="importFile" class="hidden" aria-label="Загрузить резервную копию"><input type="file" accept=".txt,text/plain" id="planImportFile" class="hidden" aria-label="Загрузить TXT с программой">
@@ -164,7 +186,7 @@ function nextDate(day){const dt=new Date();dt.setHours(12,0,0,0);let delta=(WEEK
 function nextDay(){const day=new Date().getDay();return ['tue','thu','sat'].find(d=>WEEK[d]>=day)||'tue';}
 const defaults=()=>({templates:seed(),sessions:[],planned:{},bodyWeights:[],settings:{restSec:150},ui:{day:nextDay(),date:nextDate(nextDay()),tab:'train',progressRange:'all'}});
 let state;let currentError='',importFeedback='',timerEnd=0,toastTimer;
-try{const raw=localStorage.getItem(KEY);state=raw?JSON.parse(raw):defaults();if(!state.templates||!state.sessions||!state.settings)throw Error('bad state');if(!state.ui)state.ui=defaults().ui;if(!state.planned||typeof state.planned!=='object'||Array.isArray(state.planned))state.planned={};if(!Array.isArray(state.bodyWeights))state.bodyWeights=[];}catch(err){state=defaults();currentError='Не удалось прочитать сохранённые данные. Резервная копия поможет восстановить историю.';}
+try{const raw=localStorage.getItem(KEY);state=raw?JSON.parse(raw):defaults();if(!state.templates||!state.sessions||!state.settings)throw Error('bad state');if(!state.ui)state.ui=defaults().ui;if(state.ui.tab==='template')state.ui.tab='plan';if(!state.planned||typeof state.planned!=='object'||Array.isArray(state.planned))state.planned={};if(!Array.isArray(state.bodyWeights))state.bodyWeights=[];}catch(err){state=defaults();currentError='Не удалось прочитать сохранённые данные. Резервная копия поможет восстановить историю.';}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state));return true;}catch(e){toast('Сохранение недоступно. Экспортируйте резервную копию!');return false;}};
 function toast(s){const el=document.querySelector('#toast');el.textContent=s;el.classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.add('hidden'),4200);}
 function sessionsBefore(day,date){return state.sessions.filter(s=>s.day===day&&s.date<date).sort((a,b)=>b.date.localeCompare(a.date));}
@@ -202,14 +224,14 @@ function scheduled(day,date){const p=state.planned?.[date];return p?.day===day?p
 function upcomingSchedule(){return Object.values(state.planned||{}).sort((a,b)=>a.date.localeCompare(b.date));}
 function workoutProposal(day,date){
  const p=scheduled(day,date);
- if(!p)return {items:suggest(day,date),source:'auto',plan:null};
+ if(!p)return {items:[],source:'none',plan:null};
  const items=p.exercises.map(ex=>({...ex,sets:ex.sets.map(r=>({type:r.type,targetWeight:String(r.weight),targetReps:String(r.reps),actualWeight:'',actualReps:'',rir:'',done:false})),suggestCode:'imported',suggestWhy:'Точный план из TXT-файла'}));
  return {items,source:'imported',plan:p};
 }
 function sessionId(day,date){return `${day}_${date}`;}
 function currentSession(){return state.sessions.find(s=>s.id===sessionId(state.ui.day,state.ui.date));}
 function startSession(){if(currentSession()){render();return;}const {day,date}=state.ui;
-const proposal=workoutProposal(day,date);const sess={id:sessionId(day,date),day,date,templateVersion:state.templates[day].version,createdAt:new Date().toISOString(),source:proposal.source,planTitle:proposal.plan?.title||'',planNotes:proposal.plan?.notes||'',exercises:proposal.items,recovery:'',note:''};
+const proposal=workoutProposal(day,date);if(!proposal.plan)return toast('На эту дату нет программы. Сначала загрузи TXT во вкладке «План».');const sess={id:sessionId(day,date),day,date,templateVersion:state.templates[day].version,createdAt:new Date().toISOString(),source:proposal.source,planTitle:proposal.plan?.title||'',planNotes:proposal.plan?.notes||'',exercises:proposal.items,recovery:'',note:''};
 state.sessions.push(sess);save();render();toast('Тренировка создана: план сохранён отдельно от шаблона');}
 const labelDate=x=>{try{return new Date(`${x}T12:00:00`).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'});}catch{return x;}};
 const RUWD=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
@@ -223,22 +245,22 @@ function weekCalendar(dateStr){
   const iso=isoDate(cur); const wd=cur.getDay(); const train=['tue','thu','sat'].includes(Object.keys(WEEK).find(k=>WEEK[k]===wd)||'');
   items.push(`<button class="cal-item ${iso===dateStr?'active':''} ${train?'train':''}" data-action="set-date" data-date="${iso}" aria-label="${labelDate(iso)}"><span class="cal-wd">${RUWD[wd]}</span><span class="cal-num">${cur.getDate()}</span></button>`);
  }
- return `<div class="calendar-card"><div class="calendar-head"><div><div class="eyebrow">Дата тренировки</div><div class="calendar-current">${esc(labelDate(dateStr))}</div></div><label class="calendar-edit">📅<input class="calendar-native-input" type="date" data-date value="${esc(dateStr)}"></label></div><div class="calendar-grid">${items.join('')}</div></div>`;
+ return `<div class="calendar-card"><div class="calendar-head"><div><div class="eyebrow">Дата тренировки</div><div class="calendar-current">${esc(labelDate(dateStr))}</div></div><label class="calendar-edit"><svg class="calendar-outline" viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="2.4"/><path d="M7.5 3v5M16.5 3v5M3.5 10.5h17"/><path d="M8.5 14.5h2M13.5 14.5h2M8.5 17.5h2"/></svg><input class="calendar-native-input" type="date" data-date value="${esc(dateStr)}"></label></div><div class="calendar-grid">${items.join('')}</div></div>`;
 }
 function summary(s){let t=0,done=0;for(const ex of s.exercises){for(const row of workSets(ex)){t++;if(isDone(row))done++;}}return {done,total:t};}
 const daytabs=()=>`<div class="day-tabs">${Object.keys(D).map(day=>`<button data-action="day" data-day="${day}" class="${state.ui.day===day?'selected':''}">${D[day]}</button>`).join('')}</div>`;
 const pills=(arr)=>arr.map(([text,cls])=>`<span class="pill ${cls||''}">${esc(text)}</span>`).join(' ');
-function intro(title,caption){return `<div class="topline"><div class="brand"><div class="brandicon" aria-hidden="true"></div><div><div class="eyebrow">Тренировочный дневник</div><div class="big"><span class="setword">СЕТ</span> <span class="slash-accent">/</span> ${esc(title)}</div></div></div><span class="pill">Локально</span></div>${caption?`<p class="muted" style="margin:14px 0 0">${caption}</p>`:''}`;}
+function intro(title,caption){return `<div class="topline"><div class="brand"><div class="brandicon" aria-hidden="true"></div><div><div class="eyebrow">Тренировочный дневник</div><div class="big"><span class="setword">СЕТ</span><span class="slash-accent"> / </span><span class="pageword">${esc(title)}</span></div></div></div><span class="pill">Локально</span></div>${caption?`<p class="muted" style="margin:14px 0 0">${caption}</p>`:''}`;}
 function renderTrain(){const s=currentSession(),day=state.ui.day,date=state.ui.date;
 let html=intro('Дневник','')+daytabs();
 html+=weekCalendar(date);
-if(!s){const proposal=workoutProposal(day,date),items=proposal.items,fromFile=proposal.source==='imported';html+=`<div class="panel"><div class="row between"><div><div class="h">${fromFile?esc(proposal.plan.title||'План из TXT'):`План на ${esc(D[day].toLowerCase())}`}</div><div class="small">${items.length} упражнений · ${items.reduce((acc,e)=>acc+workSets(e).length,0)} рабочих подходов</div></div><span class="pill ${fromFile||state.templates[day].verified?'good':'warn'}">${fromFile?'Из TXT':state.templates[day].verified?'Перенесённый план':'Частичный шаблон'}</span></div>`;
+if(!s){const proposal=workoutProposal(day,date),items=proposal.items,fromFile=proposal.source==='imported';if(!fromFile)return html+`<div class="panel"><div class="h">На эту дату нет программы</div><p class="small">Загрузи план из чата «План тренировок» в TXT. Шаблоны и автоматическая подстановка больше не используются.</p><button class="button primary full" data-action="tab" data-tab="plan">Перейти к загрузке TXT</button></div>`;html+=`<div class="panel"><div class="row between"><div><div class="h">${fromFile?esc(proposal.plan.title||'План из TXT'):`План на ${esc(D[day].toLowerCase())}`}</div><div class="small">${items.length} упражнений · ${items.reduce((acc,e)=>acc+workSets(e).length,0)} рабочих подходов</div></div><span class="pill ${fromFile||state.templates[day].verified?'good':'warn'}">${fromFile?'Из TXT':state.templates[day].verified?'Перенесённый план':'Частичный шаблон'}</span></div>`;
 if(!fromFile&&!state.templates[day].verified)html+='<div class="notice warn">Не все целевые подходы этого дня известны. Проверь и заполни их во вкладке «Шаблон» перед тренировкой.</div>';if(fromFile&&proposal.plan.notes)html+=`<div class="notice">${esc(proposal.plan.notes)}</div>`;
 for(const ex of items){const w=workSets(ex);const previews=w.slice(0,4).map(x=>`${fmt(x.targetWeight)} × ${fmt(x.targetReps)}`).join(' · ');html+=`<div style="padding:11px 0;border-top:1px solid #314051"><b>${esc(ex.name)}</b><div class="small">${esc(previews||'Рабочие подходы не заданы')}</div>${ex.notes?`<div class="small" style="margin-top:4px">${esc(ex.notes)}</div>`:''}${ex.sourceDate?`<div class="small" style="margin-top:3px">${esc(ex.suggestWhy)} · ${esc(ex.sourceDate)}</div>`:''}</div>`;}
 html+=`<button class="button primary full" data-action="start" style="margin-top:14px">Начать и записывать подходы</button></div>`;
 return html;}
 const {done,total}=summary(s),percent=total?100*done/total:0;
-html+=`<div class="panel"><div class="row between"><div><div class="eyebrow">Выполнено рабочих подходов</div><div class="statnum">${done} <span class="muted">/ ${total}</span></div></div>${pills([[done===total&&total?'Все отмечены':'В процессе',done===total&&total?'good':'']])}</div><div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div><div class="split" style="margin-top:12px"><button class="button primary" data-action="export" data-session="${esc(s.id)}">⇧ Экспорт TXT</button><button class="button" data-action="copy" data-session="${esc(s.id)}">⧉ Копировать отчёт</button></div></div>`;
+html+=`<div class="panel"><div class="row between"><div><div class="eyebrow">Выполнено рабочих подходов</div><div class="statnum">${done} <span class="muted">/ ${total}</span></div></div>${pills([[done===total&&total?'Все отмечены':'В процессе',done===total&&total?'good':'']])}</div><div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div><div style="margin-top:12px"><button class="button primary full" data-action="export" data-session="${esc(s.id)}">⇧ Экспорт TXT</button></div></div>`;
 
 html+='<div class="work-exercises">';s.exercises.forEach((ex,ei)=>{
  const totalWork=workSets(ex).length,complete=workSets(ex).filter(isDone).length;
@@ -255,20 +277,19 @@ html+='<div class="work-exercises">';s.exercises.forEach((ex,ei)=>{
  html+='</section>';
 });html+='</div>';
 html+=`<div class="panel"><div class="row between"><div class="grow"><b>Самочувствие / восстановление</b><div class="small">Оценка в день тренировки для будущих рекомендаций</div></div><div style="width:140px"><select data-sessionfield="recovery"><option value="" ${!s.recovery?'selected':''}>Не указано</option><option value="1" ${s.recovery==='1'?'selected':''}>1 · Плохо</option><option value="2" ${s.recovery==='2'?'selected':''}>2 · Слабо</option><option value="3" ${s.recovery==='3'?'selected':''}>3 · Обычно</option><option value="4" ${s.recovery==='4'?'selected':''}>4 · Хорошо</option><option value="5" ${s.recovery==='5'?'selected':''}>5 · Отлично</option></select></div></div></div>`;
-html+=`<div class="panel"><div class="h">Самочувствие и итог</div><p class="small">Укажи сон, усталость, дискомфорт или причины пропуска. Эти данные попадут в TXT-отчёт.</p><textarea rows="4" data-sessionnote="1" placeholder="Например: в последних подходах тяги осталось 0–1 повтора; ноги ещё не восстановились...">${esc(s.note||'')}</textarea><div class="split" style="margin-top:12px"><button class="button primary" data-action="export" data-session="${esc(s.id)}">⇧ TXT-отчёт</button><button class="button" data-action="copy" data-session="${esc(s.id)}">⧉ Скопировать</button></div></div><p class="footnote">Сохраняется на этом устройстве автоматически. Если программа или история важны, делай резервную копию на вкладке «Настройки».</p>`;
+html+=`<div class="panel"><div class="h">Самочувствие и итог</div><p class="small">Укажи сон, усталость, дискомфорт или причины пропуска. Эти данные попадут в TXT-отчёт.</p><textarea rows="4" data-sessionnote="1" placeholder="Например: в последних подходах тяги осталось 0–1 повтора; ноги ещё не восстановились...">${esc(s.note||'')}</textarea><div style="margin-top:12px"><button class="button primary full" data-action="export" data-session="${esc(s.id)}">⇧ TXT-отчёт</button></div></div><p class="footnote">Сохраняется на этом устройстве автоматически. Если программа или история важны, делай резервную копию на вкладке «Настройки».</p>`;
 return html;
 }
-function planList(){const day=state.ui.day,t=state.templates[day],proposal=workoutProposal(day,state.ui.date),items=proposal.items;
- let html=intro('План','Приоритет: план из TXT от чата → автоматические рекомендации, если TXT на эту дату отсутствует.')+`<button class="button full" data-action="tab" data-tab="template" style="margin-top:14px">☷ Открыть и настроить шаблон упражнений</button>`+(importFeedback?`<div class="notice warn">${esc(importFeedback)}</div>`:'')+`<div class="panel"><div class="h">Загрузить программу из чата</div><p class="small">Чат «План тренировок» создаёт файл .txt в формате SILA_PLAN_V1. Он может содержать сразу несколько дат и все подходы. Нажми кнопку и выбери файл в приложении «Файлы» на iPhone.</p><button class="button primary full" data-action="import-plan">↓ Загрузить план TXT</button><div class="small" style="margin-top:9px">История выполненных тренировок не изменяется. План для уже начатого дня не перезаписывается.</div></div>`;
- const schedule=upcomingSchedule();
- html+=`<div class="panel"><div class="row between"><div class="h">Календарь из TXT</div><span class="pill">${schedule.length} дат</span></div>`;
- if(!schedule.length)html+='<p class="small">Пока нет загруженных тренировок. Приложение использует обычный шаблон и рекомендации по прогрессии.</p>';
- schedule.forEach(p=>{const started=state.sessions.some(s=>s.date===p.date&&s.day===p.day);html+=`<div class="schedule-item"><div class="grow"><div class="schedule-date">${esc(D[p.day])} · ${esc(labelDate(p.date))}</div><div class="schedule-sub">${esc(p.title||'План тренировки')} · ${p.exercises.length} упр. ${started?'· уже начата':''}</div></div><button class="button sm" data-action="open-planned" data-day="${esc(p.day)}" data-date="${esc(p.date)}">Открыть</button><button class="button sm danger" data-action="remove-planned" data-date="${esc(p.date)}" title="Удалить только план этой даты" aria-label="Удалить план ${esc(p.date)}">×</button></div>`;});
+function planList(){
+ const proposal=workoutProposal(state.ui.day,state.ui.date),schedule=upcomingSchedule();
+ let html=intro('План','Программы берутся только из TXT-файлов, которые подготовлены в чате «План тренировок».');
+ if(importFeedback)html+=`<div class="notice warn">${esc(importFeedback)}</div>`;
+ html+=`<div class="panel"><div class="h">Импорт программы</div><p class="small">Загрузи TXT в формате SILA_PLAN_V1. Можно импортировать сразу несколько дат. Уже начатые тренировки не перезаписываются.</p><button class="button primary full" data-action="import-plan">↓ Загрузить программу TXT</button></div>`;
+ html+=`<div class="panel"><div class="row between"><div class="h">Планы из TXT</div><span class="pill">${schedule.length} дат</span></div>`;
+ if(!schedule.length)html+='<div class="notice">Пока нет программ. Загрузить можно прямо с iPhone из приложения «Файлы».</div>';
+ schedule.forEach(p=>{const started=state.sessions.some(s=>s.date===p.date&&s.day===p.day);html+=`<div class="schedule-item"><div class="grow"><div class="schedule-date">${esc(D[p.day])} · ${esc(labelDate(p.date))}</div><div class="schedule-sub">${esc(p.title||'План тренировки')} · ${p.exercises.length} упр. ${started?'· начата':''}</div></div><button class="button sm" data-action="open-planned" data-day="${esc(p.day)}" data-date="${esc(p.date)}">Открыть</button><button class="button sm danger" data-action="remove-planned" data-date="${esc(p.date)}" aria-label="Удалить план ${esc(p.date)}">×</button></div>`;});
  html+='</div>';
- html+=daytabs()+`<div class="panel"><div class="h">${proposal.source==='imported'?'Запланировано из TXT':'Автоматический план'}</div><p class="small">${esc(labelDate(state.ui.date))}. Дата меняется во вкладке «Дневник». ${proposal.source==='imported'?'Импортированные веса имеют приоритет, прогрессия здесь не применяется.':'Расчёт по завершённым тренировкам.'}</p>`;
- items.forEach((ex,i)=>{const work=workSets(ex);let status=ex.suggestCode==='up'||ex.suggestCode==='imported'?'good':ex.suggestCode==='base'?'':'warn';html+=`<div style="padding:13px 0;border-top:1px solid #334252"><div class="row between"><b>${i+1}. ${esc(ex.name)}</b>${pills([[ex.suggestCode==='imported'?'Из TXT':ex.suggestCode==='up'?'↑ Вес':ex.suggestCode==='base'?'База':'→ Без роста',status]])}</div><div class="small" style="margin:7px 0;color:#cbd9e4">${esc(work.map(s=>`${fmt(s.targetWeight)} кг × ${fmt(s.targetReps)}`).join(' · '))}</div><div class="small">${esc(ex.suggestWhy)}</div></div>`;});
- html+=`<button class="button primary full" data-action="tab" data-tab="train" style="margin-top:10px">Перейти к тренировке</button></div>`;
- html+=`<div class="panel"><div class="h">Как работает увеличение</div><p class="small">Только для дат без загруженного TXT-плана.</p><div class="info-list">① Все рабочие подходы отмечены и фактические данные заполнены.<br>② Вес и повторы не ниже целей.<br>③ В каждом рабочем подходе RIR ≥ 2.<br>④ Если самочувствие прошлого раза 1–2 из 5, увеличение не предлагается.<br>⑤ Шаг увеличения берётся из настроек упражнения.<br>Иначе вес сохраняется; пустые RIR не считаются «лёгкой» тренировкой.</div></div>`;
+ if(proposal.source==='imported')html+=`<div class="panel"><div class="h">Программа на ${esc(formatDateShort(state.ui.date))}</div>${proposal.items.map((ex,i)=>`<div class="schedule-preview"><b>${i+1}. ${esc(ex.name)}</b><div class="small">${esc(workSets(ex).map(r=>`${fmt(r.targetWeight)} кг × ${fmt(r.targetReps)}`).join(' · '))}</div></div>`).join('')}</div>`;
  return html;
 }
 function renderTemplate(){const d=state.ui.day,t=state.templates[d];let html=intro('Шаблон','Можно менять упражнения, целевые веса, точные повторы и шаг повышения. Изменения повлияют на новые тренировки.')+daytabs();
@@ -279,9 +300,33 @@ function renderTemplate(){const d=state.ui.day,t=state.templates[d];let html=int
  html+=`<div class="editor-actions"><button class="button sm" data-action="add-set" data-ex="${ei}" data-type="warm">+ Разминка</button><button class="button sm" data-action="add-set" data-ex="${ei}" data-type="work">+ Рабочий</button><button class="button sm minor" data-action="move-ex" data-ex="${ei}" data-dir="-1" ${ei===0?'disabled':''}>↑</button><button class="button sm minor" data-action="move-ex" data-ex="${ei}" data-dir="1" ${ei===t.exercises.length-1?'disabled':''}>↓</button></div></div>`;});
  html+=`<button class="button primary full" data-action="add-ex">+ Добавить упражнение</button><div class="panel"><div class="h">Уточнение шаблона</div><p class="small">После заполнения пустых целей можно отметить этот день как проверенный.</p><button class="button full" data-action="verify">${t.verified?'✓ Помечен как проверенный':'Отметить шаблон проверенным'}</button></div>`;return html;
 }
-function renderHistory(){const list=[...state.sessions].sort((a,b)=>b.date.localeCompare(a.date));let html=intro('История','Любую тренировку можно открыть, исправить или выгрузить в TXT.');
-if(!list.length)html+='<div class="panel">Пока нет записанных тренировок. Создай первую во вкладке «Дневник».</div>';
-list.forEach(s=>{const x=summary(s),pct=x.total?Math.round(100*x.done/x.total):0;html+=`<button class="history-item" data-action="open-history" data-session="${esc(s.id)}"><span><span class="label">${esc(D[s.day])} · ${esc(labelDate(s.date))}</span><br><span class="small">${x.done}/${x.total} рабочих подходов · ${pct}%</span></span><span style="color:var(--lime);font-size:24px">›</span></button>`;});return html;}
+function monthlyCalendar(){
+ const base=(state.ui.historyMonth||isoDate(new Date()).slice(0,7));
+ const [year,month]=base.split('-').map(Number);
+ const ym=Number.isInteger(year)&&month>=1&&month<=12?new Date(year,month-1,1,12):new Date();
+ const prefix=`${ym.getFullYear()}-${String(ym.getMonth()+1).padStart(2,'0')}`;
+ const start=(ym.getDay()+6)%7, days=new Date(ym.getFullYear(),ym.getMonth()+1,0).getDate();
+ const monthName=ym.toLocaleDateString('ru-RU',{month:'long',year:'numeric'});
+ const statuses=new Map();
+ for(const p of Object.values(state.planned||{})){if(p?.date?.startsWith(prefix))statuses.set(p.date,'planned');}
+ for(const sess of state.sessions){if(!sess.date?.startsWith(prefix))continue;const x=summary(sess);statuses.set(sess.date,x.total>0&&x.done===x.total?'complete': 'partial');}
+ let cells=Array.from({length:start},()=>'<div class="month-empty"></div>');
+ for(let i=1;i<=days;i++){
+  const date=`${prefix}-${String(i).padStart(2,'0')}`,st=statuses.get(date)||'',active=date===state.ui.date;
+  cells.push(`<button class="month-day ${st} ${active?'current':''}" data-action="calendar-open" data-date="${date}" aria-label="${labelDate(date)}: ${st==='complete'?'выполнено':st==='partial'?'частично выполнено':st==='planned'?'план':'нет записи'}"><span>${i}</span>${st?'<i aria-hidden="true"></i>':''}</button>`);
+ }
+ return `<div class="panel"><div class="row between month-head"><div class="h">Календарь тренировок</div><div class="month-controls"><button data-action="month-shift" data-step="-1" aria-label="Предыдущий месяц">‹</button><b>${esc(monthName)}</b><button data-action="month-shift" data-step="1" aria-label="Следующий месяц">›</button></div></div><div class="month-calendar"><div class="month-weekdays">${['Пн','Вт','Ср','Чт','Пт','Сб','Вс'].map(w=>`<span>${w}</span>`).join('')}</div><div class="month-grid">${cells.join('')}</div></div><div class="calendar-legend"><span><i class="lg-complete"></i> Выполнено</span><span><i class="lg-partial"></i> Частично</span><span><i class="lg-planned"></i> План</span></div></div>`;
+}
+function periodRangeInputs(){
+ const now=isoDate(new Date()),start=state.ui.reportFrom||(()=>{const d=new Date();d.setDate(d.getDate()-29);return isoDate(d)})();const end=state.ui.reportTo||now;
+ return `<div class="panel"><div class="h">Сводный TXT-отчёт</div><p class="small">Все подтверждённые результаты за выбранный период — для анализа в чате «План тренировок».</p><div class="period-dates"><label class="small">С<input id="reportFrom" type="date" value="${esc(start)}"></label><label class="small">По<input id="reportTo" type="date" value="${esc(end)}"></label></div><button class="button primary full" data-action="period-export">⇧ Выгрузить отчёт TXT</button></div>`;
+}
+function renderHistory(){const list=[...state.sessions].sort((a,b)=>b.date.localeCompare(a.date));let html=intro('История','Календарь тренировок и результаты по датам.');
+ html+=monthlyCalendar()+periodRangeInputs();
+ html+=`<div class="panel"><div class="row between"><div class="h">Журнал тренировок</div><span class="pill">${list.length}</span></div>`;
+ if(!list.length)html+='<div class="notice">Пока нет записанных тренировок. Загрузить программу можно во вкладке «План».</div>';
+ list.forEach(s=>{const x=summary(s),pct=x.total?Math.round(100*x.done/x.total):0;html+=`<button class="history-item" data-action="open-history" data-session="${esc(s.id)}"><span><span class="label">${esc(D[s.day]||'Тренировка')} · ${esc(labelDate(s.date))}</span><br><span class="small">${x.done}/${x.total} рабочих подходов · ${pct}%</span></span><span style="color:var(--lime);font-size:24px">›</span></button>`;});return html+'</div>';
+}
 // Данные прогрессии рассчитываются из подтверждённых рабочих подходов. Это НЕ расчёт 1ПМ.
 function workoutWeightHistory(){
  const groups=new Map();
@@ -319,10 +364,10 @@ function filterChartPoints(points,range){
  const now=isoDate(new Date());const cutoff=new Date(now+'T12:00:00');cutoff.setDate(cutoff.getDate()-days);
  const date=isoDate(cutoff);return points.filter(p=>p.date>=date&&p.date<=now);
 }
-function miniChart(points,label,unit){
+function miniChart(points,label,unit,averagePoints=[]){
  if(!points.length)return '<div class="notice">Для выбранного периода пока нет измерений.</div>';
  const W=336,H=214,L=42,R=14,T=16,B=34,plotW=W-L-R,plotH=H-T-B;
- const vals=points.map(p=>p.value),lo=Math.min(...vals),hi=Math.max(...vals);
+ const vals=points.map(p=>p.value).concat(averagePoints.filter(p=>p.date>=points[0].date&&p.date<=points[points.length-1].date).map(p=>p.value)),lo=Math.min(...vals),hi=Math.max(...vals);
  const pad=Math.max((hi-lo)*.18,unit==='кг'&&lo>20?.35:.6);
  const ymin=Math.max(0,lo-pad),ymax=hi+pad;
  const times=points.map(p=>new Date(p.date+'T12:00:00').getTime());
@@ -336,12 +381,33 @@ function miniChart(points,label,unit){
  const lines=Array.from({length:4},(_,i)=>{const val=ymax-(ymax-ymin)*i/3,cy=f(y(val));return `<line x1="${L}" y1="${cy}" x2="${W-R}" y2="${cy}" stroke="#3a4042" stroke-width="1" stroke-dasharray="4,6"/><text x="${L-8}" y="${cy+3}" fill="#8f9a97" font-size="10" text-anchor="end">${esc(fmt(Math.round(val*10)/10))}</text>`;}).join('');
  const datelabels=points.length===1?[[0,'middle']]:[[0,'start'],[points.length-1,'end']];
  const ticks=datelabels.map(([i,a])=>`<text x="${f(x(i))}" y="${H-10}" text-anchor="${a}" fill="#8f9a97" font-size="10">${esc(formatDateShort(points[i].date))}</text>`).join('');
- return `<div class="chart-wrap"><svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(label)}: динамика по ${points.length} датам"><defs><linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c8f56f" stop-opacity=".34"/><stop offset="100%" stop-color="#c8f56f" stop-opacity="0"/></linearGradient><linearGradient id="chartLine" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b7ef63"/><stop offset="100%" stop-color="#f1ffcf"/></linearGradient></defs><title>${esc(label)}</title>${lines}${points.length>1?`<polygon points="${area}" fill="url(#chartFill)"/>`:''}${points.length>1?`<polyline points="${coords}" fill="none" stroke="url(#chartLine)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`:''}${dots}${ticks}</svg></div>`;
+ const avgPts=averagePoints.filter(p=>p.date>=points[0].date&&p.date<=points[points.length-1].date);
+ const avgLine=avgPts.length>1?`<polyline points="${avgPts.map(p=>`${f(tmax===tmin?L+plotW/2:L+(new Date(p.date+'T12:00:00').getTime()-tmin)/(tmax-tmin)*plotW)},${f(y(p.value))}`).join(' ')}" fill="none" stroke="#edf9d1" stroke-width="2" stroke-dasharray="5,4" opacity=".9"/>`:'';
+ return `<div class="chart-wrap"><svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(label)}: динамика по ${points.length} датам"><defs><linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c8f56f" stop-opacity=".34"/><stop offset="100%" stop-color="#c8f56f" stop-opacity="0"/></linearGradient><linearGradient id="chartLine" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b7ef63"/><stop offset="100%" stop-color="#f1ffcf"/></linearGradient></defs><title>${esc(label)}</title>${lines}${points.length>1?`<polygon points="${area}" fill="url(#chartFill)"/>`:''}${points.length>1?`<polyline points="${coords}" fill="none" stroke="url(#chartLine)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`:''}${avgLine}${dots}${ticks}</svg></div>`;
 }
 function progressRangeButtons(){const range=state.ui.progressRange||'all';return `<div class="range-buttons" role="group" aria-label="Период графика">${[['m1','1 мес.'],['m3','3 мес.'],['m6','6 мес.'],['y1','1 год'],['all','Всё']].map(([id,name])=>`<button type="button" class="${range===id?'active':''}" data-action="range" data-range="${id}" aria-pressed="${range===id}">${name}</button>`).join('')}</div>`;}
 function recentRows(points,unit){
  if(!points.length)return '';
  return `<div class="chart-rows">${points.slice(-5).reverse().map(p=>`<div class="chart-row"><span>${esc(formatDateShort(p.date))}</span><strong>${fmt(p.value)} ${esc(unit)}</strong></div>`).join('')}</div>`;
+}
+function repetitionHistory(exerciseKey){
+ const perWeight=new Map();
+ for(const sess of state.sessions){if(!/^\d{4}-\d{2}-\d{2}$/.test(sess.date||''))continue;
+  for(const ex of sess.exercises||[]){const name=String(ex.name||'').trim().replace(/\s+/g,' '),unit=String(ex.unit||'кг').trim();
+   if((name+'|'+unit).toLocaleLowerCase('ru-RU')!==exerciseKey)continue;
+   for(const set of ex.sets||[]){if(set.type!=='work'||!isDone(set)||!Number.isInteger(n(set.actualReps))||n(set.actualReps)<1)continue;
+    const w=n(set.actualWeight),r=n(set.actualReps);if(!Number.isFinite(w)||w<0)continue;
+    if(!perWeight.has(w))perWeight.set(w,new Map());const byDay=perWeight.get(w);
+    byDay.set(sess.date,Math.max(byDay.get(sess.date)||0,r));
+   }
+  }
+ }
+ return [...perWeight.entries()].sort((a,b)=>b[0]-a[0]).map(([weight,perDay])=>({weight,points:[...perDay.entries()].map(([date,value])=>({date,value})).sort((a,b)=>a.date.localeCompare(b.date))}));
+}
+function rollingWeightAverage(weights){
+ // Среднее за прошедшие семь календарных дней на дату каждого замера. Пустые дни не считаются нулём.
+ return weights.map(p=>{const dt=new Date(p.date+'T12:00:00');dt.setDate(dt.getDate()-6);const start=isoDate(dt);const values=weights.filter(q=>q.date>=start&&q.date<=p.date).map(q=>q.value);
+  return {date:p.date,value:+(values.reduce((a,b)=>a+b,0)/values.length).toFixed(2),count:values.length};});
 }
 function renderProgress(){
  const groups=workoutWeightHistory(),range=state.ui.progressRange||'all';
@@ -358,14 +424,29 @@ function renderProgress(){
   html+='<p class="chart-note">Каждая точка — максимальный вес среди выполненных рабочих подходов за дату. Разминка и незавершённые подходы исключены. Значения — вес одной гантели, если упражнение с гантелями.</p>';
   html+=recentRows(points,weightUnit(active.unit))+'</div>';
  }
+ // Повторения сравниваем только для одного и того же фактического веса.
+ html+='<div class="panel"><div class="h">Прогресс повторений</div><p class="small">Максимум повторений с одинаковым весом. Например, 30 кг × 8 → 30 кг × 10.</p>';
+ if(groups.length){
+  const ex=groups.find(g=>g.key===state.ui.progressRepsExercise)||groups.find(g=>g.key===state.ui.progressExercise)||groups[0];
+  const candidates=repetitionHistory(ex.key),chosen=candidates.find(c=>String(c.weight)===String(state.ui.progressRepsWeight))||candidates[0];
+  html+=`<label class="small">Упражнение<select id="progressRepsExercise" aria-label="Упражнение для анализа повторений">${groups.map(g=>`<option value="${esc(g.key)}" ${ex.key===g.key?'selected':''}>${esc(g.name)}</option>`).join('')}</select></label>`;
+  if(chosen){const pts=filterChartPoints(chosen.points,range),pr=Math.max(...chosen.points.map(p=>p.value)),first=chosen.points.find(p=>p.value===pr);
+   html+=`<label class="small reps-weight-label">Фактический вес<select id="progressRepsWeight" aria-label="Вес для сравнения повторений">${candidates.map(c=>`<option value="${c.weight}" ${c.weight===chosen.weight?'selected':''}>${fmt(c.weight)} кг${/гант/i.test(ex.unit)?' / гант.':''}</option>`).join('')}</select></label>`;
+   html+=`<div class="metric-grid"><div class="metric-box primary"><div class="metric-label-top">Максимум повторов</div><div class="metric-val">${pr}</div><div class="metric-label">При ${fmt(chosen.weight)} кг</div></div><div class="metric-box secondary"><div class="metric-label-top">Дата рекорда</div><div class="metric-val date-val">${esc(formatDateShort(first.date))}</div><div class="metric-label">Первое достижение</div></div></div>`;
+   html+=miniChart(pts,ex.name+' — повторения','повт.');
+  }else html+='<div class="notice">Для этого упражнения пока нет подтверждённых рабочих подходов.</div>';
+ }else html+='<div class="notice">Повторения появятся после первой выполненной тренировки.</div>';
+ html+='</div>';
  const weights=(state.bodyWeights||[]).filter(p=>/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&Number.isFinite(n(p.weight))&&n(p.weight)>0).map(p=>({date:p.date,value:n(p.weight)})).sort((a,b)=>a.date.localeCompare(b.date));
  const filtered=filterChartPoints(weights,range),last=weights.at(-1),first=weights[0];
  html+='<div class="panel"><div class="h">Вес тела</div><p class="small">Добавляй замеры с датой. Для одной даты хранится одно значение; при повторном внесении его можно заменить.</p>';
  html+=`<div class="weight-form"><label class="small">Дата замера<input id="bodyWeightDate" type="date" value="${isoDate(new Date())}"></label><label class="small">Вес, кг<input id="bodyWeightValue" inputmode="decimal" type="number" min="15" max="500" step="0.1" placeholder="Напр. 99,5"></label><button type="button" class="button primary" data-action="save-body-weight">+ Сохранить измерение</button></div>`;
  if(weights.length){
   html+=`<div class="metric-grid"><div class="metric-box primary"><div class="metric-label-top">Текущий вес</div><div class="metric-val">${fmt(last.value)} кг</div><div class="metric-label">${esc(formatDateShort(last.date))}</div></div><div class="metric-box secondary"><div class="metric-label-top">Динамика</div><div class="metric-val">${last.value-first.value>0?'+':''}${fmt(+(last.value-first.value).toFixed(2))} кг</div><div class="metric-label">От первого замера</div></div></div>`;
-  html+=miniChart(filtered,'Динамика веса тела','кг');
-  html+='<div class="chart-note">Разница считается между первым и последним сохранёнными замерами; фильтр периода меняет только график.</div>';
+  const avgs=rollingWeightAverage(weights),latestAverage=avgs.at(-1);
+  html+=`<div class="average-bar"><span><b>Средний вес за 7 дней</b><small>По ${latestAverage.count} измерениям, до ${esc(formatDateShort(last.date))}</small></span><strong>${fmt(latestAverage.value)} кг</strong></div>`;
+  html+=miniChart(filtered,'Динамика веса тела','кг',filterChartPoints(avgs,range));
+  html+='<div class="chart-note"><span class="avg-legend">Лайм — измерения · пунктир — средний вес за 7 дней.</span> Разница считается между первым и последним сохранёнными замерами; фильтр периода меняет только график.</div>';
   html+='<div class="chart-rows">';
   weights.slice().reverse().forEach(p=>{html+=`<div class="chart-row"><div><b>${fmt(p.value)} кг</b><div class="record-date">${esc(formatDateShort(p.date))}</div></div><div class="weight-actions"><button type="button" class="button sm" data-action="edit-body-weight" data-date="${esc(p.date)}">Изменить</button><button type="button" class="button sm danger" data-action="delete-body-weight" data-date="${esc(p.date)}" aria-label="Удалить вес от ${esc(p.date)}">×</button></div></div>`;});
   html+='</div>';
@@ -388,10 +469,10 @@ function saveBodyWeight(){
  if(found)found.weight=value;else list.push({date,weight:value});
  save();render();toast(found?'Замер обновлён':'Замер сохранён');
 }
-function renderSettings(){return intro('Настройки','История и загруженные планы хранятся только на этом iPhone/в этом браузере, без облачной синхронизации.')+`<div class="panel"><div class="h">Таймер отдыха</div><label class="small">Секунды после отмеченного рабочего подхода<input type="number" min="0" max="900" step="15" id="restInput" value="${esc(state.settings.restSec)}" style="margin-top:8px"></label><div class="small" style="margin-top:8px">0 — выключить. На заблокированном экране звуковое уведомление не гарантируется.</div></div><div class="panel"><div class="h">Резервная копия</div><p class="small">Сохрани историю, шаблоны, календарь, вес тела и рекорды в JSON, особенно перед обновлением iPhone или очисткой Safari.</p><div class="stack"><button class="button primary full" data-action="backup">Скачать резервную копию JSON</button><button class="button full" data-action="import">Загрузить резервную копию JSON</button></div></div><div class="panel"><div class="h">Проверка исходных планов</div><div class="info-list">Четверг перенесён из актуального согласованного плана. Суббота: точно заполнен наклонный жим. Остальные подходы субботы и вторника нужно сверить с исходными таблицами. Все шаблоны редактируются.</div></div><div class="panel"><div class="h">Важно о данных</div><p class="small">TXT-программу нужно скачать из чата и вручную импортировать во вкладке «План». Ни приложение, ни алгоритм не отправляют записи в ChatGPT автоматически. Для разбора нужно вручную поделиться TXT в чате «План тренировок». При удалении данных сайта без JSON-копии журнал может быть утрачен.</p></div>`;}
-function render(){let tab=state.ui.tab||'train';let body=tab==='train'?renderTrain():tab==='plan'?planList():tab==='template'?renderTemplate():tab==='progress'?renderProgress():tab==='history'?renderHistory():renderSettings();
+function renderSettings(){return intro('Настройки','История и загруженные планы хранятся только на этом iPhone/в этом браузере, без облачной синхронизации.')+`<div class="panel"><div class="h">Таймер отдыха</div><label class="small">Секунды после отмеченного рабочего подхода<input type="number" min="0" max="900" step="15" id="restInput" value="${esc(state.settings.restSec)}" style="margin-top:8px"></label><div class="small" style="margin-top:8px">0 — выключить. На заблокированном экране звуковое уведомление не гарантируется.</div></div><div class="panel"><div class="h">Резервная копия</div><p class="small">Сохрани историю, импортированные планы, календарь, вес тела и рекорды в JSON, особенно перед обновлением iPhone или очисткой Safari.</p><div class="stack"><button class="button primary full" data-action="backup">Скачать резервную копию JSON</button><button class="button full" data-action="import">Загрузить резервную копию JSON</button></div></div><div class="panel"><div class="h">Важно о данных</div><p class="small">TXT-программу нужно скачать из чата и вручную импортировать во вкладке «План». Ни приложение, ни алгоритм не отправляют записи в ChatGPT автоматически. Для разбора нужно вручную поделиться TXT в чате «План тренировок». При удалении данных сайта без JSON-копии журнал может быть утрачен.</p></div>`;}
+function render(){let tab=state.ui.tab||'train';let body=tab==='train'?renderTrain():tab==='plan'?planList():tab==='progress'?renderProgress():tab==='history'?renderHistory():renderSettings();
  document.querySelector('#app').innerHTML=(currentError?`<div class="notice warn">${esc(currentError)}</div>`:'')+body;
- const nav=[['train','▥','Тренировка'],['plan','↗','План'],['progress','⌁','Прогресс'],['history','◷','История'],['settings','⚙','Настройки']];document.querySelector('#navigation').innerHTML=nav.map(([key,ic,label])=>`<button class="${key===tab||(key==='plan'&&tab==='template')?'active':''}" data-action="tab" data-tab="${key}" aria-label="${label}"><span class="navicon">${ic}</span>${label}</button>`).join('');
+ const nav=[['train','▥','Тренировка'],['plan','↗','План'],['progress','⌁','Прогресс'],['history','◷','История'],['settings','⚙','Настройки']];document.querySelector('#navigation').innerHTML=nav.map(([key,ic,label])=>`<button class="${key===tab?'active':''}" data-action="tab" data-tab="${key}" aria-label="${label}"><span class="navicon">${ic}</span>${label}</button>`).join('');
  renderTimer();
 }
 function touchTemplate(){const t=state.templates[state.ui.day];t.version=(Number(t.version)||0)+1;t.verified=false;save();}
@@ -475,10 +556,32 @@ async function importPlan(file){
  finally{input.value='';}
 }
 function exportBackup(){const file=makeFile(JSON.stringify({format:'sila-dnevnik',version:1,savedAt:new Date().toISOString(),data:state},null,2),`СЕТ_резервная_копия_${isoDate(new Date())}.json`,'application/json;charset=utf-8');downloadFile(file);}
-async function importBackup(file){if(!file)return;try{const payload=JSON.parse((await file.text()).replace(/^\ufeff/,''));if(payload.format!=='sila-dnevnik'||!payload.data?.templates?.thu?.exercises||!Array.isArray(payload.data.sessions)||!payload.data.settings)throw Error('Это не резервная копия дневника');if(!confirm('Заменить текущий журнал, календарь, историю и шаблоны данными из копии?'))return;state=payload.data;state.ui=state.ui||defaults().ui;state.planned=state.planned||{};state.bodyWeights=Array.isArray(state.bodyWeights)?state.bodyWeights:[];save();render();toast('Копия восстановлена');}catch(e){toast('Ошибка импорта: '+e.message);}document.querySelector('#importFile').value='';}
+async function importBackup(file){if(!file)return;try{const payload=JSON.parse((await file.text()).replace(/^\ufeff/,''));if(payload.format!=='sila-dnevnik'||!payload.data?.templates?.thu?.exercises||!Array.isArray(payload.data.sessions)||!payload.data.settings)throw Error('Это не резервная копия дневника');if(!confirm('Заменить текущий журнал, календарь, историю и планы данными из копии?'))return;state=payload.data;state.ui=state.ui||defaults().ui;if(state.ui.tab==='template')state.ui.tab='plan';state.planned=state.planned||{};state.bodyWeights=Array.isArray(state.bodyWeights)?state.bodyWeights:[];save();render();toast('Копия восстановлена');}catch(e){toast('Ошибка импорта: '+e.message);}document.querySelector('#importFile').value='';}
+function periodReport(from,to){
+ const sessions=state.sessions.filter(s=>s.date>=from&&s.date<=to&&recorded(s)).sort((a,b)=>a.date.localeCompare(b.date));
+ if(!sessions.length)return null;
+ const total=sessions.reduce((v,s)=>v+summary(s).done,0),body=(state.bodyWeights||[]).filter(p=>p.date>=from&&p.date<=to).sort((a,b)=>a.date.localeCompare(b.date));
+ const lines=[`СЕТ — СВОДНЫЙ ОТЧЁТ О ТРЕНИРОВКАХ`,`Период: ${from} — ${to}`,`Тренировок с выполненными подходами: ${sessions.length}`,`Подтверждённых рабочих подходов: ${total}`,`Рассчитываются только подтверждённые рабочие подходы.`,``, `ВЕС ТЕЛА`];
+ if(body.length){for(const p of body)lines.push(`${p.date}: ${fmt(p.weight)} кг`);const avgs=rollingWeightAverage(body.map(p=>({date:p.date,value:n(p.weight)})));if(avgs.length)lines.push(`Средний вес за последние 7 календарных дней на ${body.at(-1).date}: ${fmt(avgs.at(-1).value)} кг (${avgs.at(-1).count} замеров)`);}else lines.push('За период измерений нет.');
+ lines.push('','ТРЕНИРОВКИ ПО ДАТАМ');
+ for(const session of sessions)lines.push('', '='.repeat(46),report(session));
+ return lines.join('\r\n');
+}
+async function exportPeriod(){
+ const from=document.querySelector('#reportFrom')?.value, to=document.querySelector('#reportTo')?.value;
+ if(!validBodyDate(from)||!validBodyDate(to)||from>to)return toast('Укажи корректные даты начала и конца периода');
+ state.ui.reportFrom=from;state.ui.reportTo=to;save();
+ const txt=periodReport(from,to);if(!txt)return toast('Нет выполненных рабочих подходов за выбранный период');
+ const file=makeFile(txt,`СЕТ_отчёт_${from}_${to}.txt`,'text/plain;charset=utf-8');
+ try{if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Сводный отчёт СЕТ'});return;}}catch(e){if(e.name==='AbortError')return;}
+ downloadFile(file);toast('Сводный TXT за период сформирован');
+}
 function action(btn){const a=btn.dataset.action,day=btn.dataset.day,tab=btn.dataset.tab,ei=Number(btn.dataset.ex),si=Number(btn.dataset.set),ex=state.templates[state.ui.day]?.exercises?.[ei];
- if(a==='tab')return setTab(tab);
+ if(a==='tab')return setTab(tab==='template'?'plan':tab);
  if(a==='import-plan'){document.querySelector('#planImportFile').click();return;}
+ if(a==='period-export')return exportPeriod();
+ if(a==='month-shift'){const base=state.ui.historyMonth||isoDate(new Date()).slice(0,7);const [y,m]=base.split('-').map(Number);const d=new Date(y,m-1+Number(btn.dataset.step),1,12);state.ui.historyMonth=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;save();render();return;}
+ if(a==='calendar-open'){const date=btn.dataset.date,day=Object.keys(WEEK).find(k=>WEEK[k]===new Date(date+'T12:00:00').getDay());if(!day){toast('Тренировки планируются на вторник, четверг и субботу');return;}state.ui.day=day;state.ui.date=date;state.ui.tab='train';save();render();window.scrollTo(0,0);return;}
  if(a==='range'){state.ui.progressRange=btn.dataset.range;save();render();return;}
  if(a==='save-body-weight')return saveBodyWeight();
  if(a==='delete-body-weight'){
@@ -535,7 +638,7 @@ function action(btn){const a=btn.dataset.action,day=btn.dataset.day,tab=btn.data
  if(a==='backup')return exportBackup();
  if(a==='import'){document.querySelector('#importFile').click();return;}
 }
-function edited(el){const s=currentSession();if(el.matches('[data-date]')){const v=el.value;if(!v)return;state.ui.date=v;save();render();return;}
+function edited(el){const s=currentSession();if(el.matches('[data-date]')){const v=el.value;if(!v)return;const d=new Date(v+'T12:00:00').getDay();const day=Object.keys(WEEK).find(k=>WEEK[k]===d);if(!day){toast('Выбери вторник, четверг или субботу');render();return;}state.ui.date=v;state.ui.day=day;save();render();return;}
  if(el.dataset.sessfield&&s){const row=s.exercises[Number(el.dataset.ex)]?.sets[Number(el.dataset.set)];if(!row)return;row[el.dataset.sessfield]=el.value; if(el.dataset.sessfield==='actualWeight'||el.dataset.sessfield==='actualReps')row.filledFromPlan=false; if(row.done&&!isDone(row))row.done=false;save();return;}
  if(el.hasAttribute('data-exnote')&&s){s.exercises[Number(el.dataset.ex)].notesSession=el.value;save();return;}
  if(el.hasAttribute('data-sessionnote')&&s){s.note=el.value;save();return;}
@@ -544,7 +647,7 @@ function edited(el){const s=currentSession();if(el.matches('[data-date]')){const
  if(el.dataset.templateSet){const s=state.templates[state.ui.day].exercises[Number(el.dataset.ex)]?.sets[Number(el.dataset.set)];if(!s)return;s[el.dataset.templateSet]=el.value;touchTemplate();return;}
  if(el.id==='restInput'){state.settings.restSec=Math.max(0,Math.min(900,n(el.value)||0));save();return;}}
  document.addEventListener('click',ev=>{const target=ev.target.closest('[data-action]');if(target)action(target);});
- document.addEventListener('change',ev=>{if(ev.target.id==='progressExercise'){state.ui.progressExercise=ev.target.value;save();render();return;}edited(ev.target);});
+ document.addEventListener('change',ev=>{if(ev.target.id==='progressExercise'){state.ui.progressExercise=ev.target.value;save();render();return;}if(ev.target.id==='progressRepsExercise'){state.ui.progressRepsExercise=ev.target.value;state.ui.progressRepsWeight='';save();render();return;}if(ev.target.id==='progressRepsWeight'){state.ui.progressRepsWeight=ev.target.value;save();render();return;}edited(ev.target);});
  document.addEventListener('input',ev=>{if(ev.target.matches('[data-sessionnote],[data-exnote]'))edited(ev.target);});
  document.querySelector('#importFile').addEventListener('change',ev=>importBackup(ev.target.files[0]));
  document.querySelector('#planImportFile').addEventListener('change',ev=>importPlan(ev.target.files[0]));
