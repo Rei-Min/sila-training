@@ -138,6 +138,13 @@ body::after{content:"";position:fixed;z-index:13;top:0;left:0;right:0;height:cal
 .month-controls>b{font-size:clamp(10px,2.9vw,12px);white-space:nowrap;max-width:none;line-height:1.2;color:#f1f2ee;font-weight:800;text-align:center;min-width:0}
 .month-controls>button{flex:0 0 24px;width:24px;height:30px}
 @media(max-width:375px){.setword-italic{font-size:26px}.big .pageword{font-size:16px}.big .slash-accent{font-size:16px}.month-head{gap:3px}.month-head .h{font-size:11px;letter-spacing:-.5px}.month-controls>b{font-size:10px}.month-controls>button{flex-basis:20px;width:20px;height:28px}}
+
+/* СЕТ 1.0.4 — мобильные поправки без изменения остальных элементов */
+.big .slash-accent{color:#f6f6f4 !important}
+.rir-select{display:block;appearance:none;-webkit-appearance:none;text-align:center;text-align-last:center;padding:0 1px;font-size:13px;line-height:37px;box-sizing:border-box}
+.rir-select option{text-align:center}
+#progressExercise,#progressRepsWeight{display:block;box-sizing:border-box;width:100%;max-width:100%;min-width:0;height:43px;font-size:16px;font-weight:650;line-height:1.2;padding-left:10px;padding-right:25px}
+.reps-weight-label{min-width:0;max-width:100%}
 </style>
 </head>
 <body><main id="app" class="wrap"></main><nav id="navigation" class="topnav" aria-label="Навигация"></nav><div id="restDock"></div><div id="toast" class="toast hidden" role="status"></div><input type="file" accept=".json,application/json" id="importFile" class="hidden" aria-label="Загрузить резервную копию"><input type="file" accept=".txt,text/plain" id="planImportFile" class="hidden" aria-label="Загрузить TXT с программой">
@@ -343,6 +350,42 @@ function renderHistory(){const list=[...state.sessions].sort((a,b)=>b.date.local
  list.forEach(s=>{const x=summary(s),pct=x.total?Math.round(100*x.done/x.total):0;html+=`<button class="history-item" data-action="open-history" data-session="${esc(s.id)}"><span><span class="label">${esc(D[s.day]||'Тренировка')} · ${esc(labelDate(s.date))}</span><br><span class="small">${x.done}/${x.total} рабочих подходов · ${pct}%</span></span><span style="color:var(--lime);font-size:24px">›</span></button>`;});return html+'</div>';
 }
 // Данные прогрессии рассчитываются из подтверждённых рабочих подходов. Это НЕ расчёт 1ПМ.
+// Словарь эквивалентных названий только для аналитики; источник данных не изменяем.
+function exerciseAliasId(name){
+ const text=String(name||'').toLocaleLowerCase('ru-RU').replace(/ё/g,'е').replace(/[–—]/g,'-').replace(/\s+/g,' ').trim();
+ if(/^жим ногами(?:\s|$)/.test(text))return 'leg-press';
+ if(/^махи гантелями(?:\b|\s|$)/.test(text)&&!/(перед собой|вперед|назад)/.test(text))return 'dumbbell-lateral-raises';
+ if(/^жим гантел(?:ей|ями)(?:\s|$)/.test(text)&&/(наклон|30\s*°|30\s*град)/.test(text))return 'dumbbell-incline-press';
+ if(/^жим гантел(?:ей|ями)(?:\s|$)/.test(text)&&/сидя/.test(text))return 'dumbbell-shoulder-press';
+ if(/^горизонтальн(?:ая|ой) тяга(?:\s|$)/.test(text)&&(text==='горизонтальная тяга'||/(узким|узкого|нейтральным)/.test(text)))return 'seated-row-narrow';
+ if(/^разгибани[ея] рук/.test(text)&&/(блок|канат)/.test(text))return 'cable-triceps-extension';
+ if(/^сгибани[ея] рук/.test(text)&&/(канат|блок)/.test(text))return 'cable-rope-curl';
+ return 'exact:'+text;
+}
+function exerciseAnalyticsKey(name,unit){
+ const normalizedUnit=String(unit||'кг').toLocaleLowerCase('ru-RU').replace(/\s+/g,'').replace(/ё/g,'е');
+ return exerciseAliasId(name)+'|'+normalizedUnit;
+}
+// Предпочитаем самое подробное ИМЕЮЩЕЕСЯ название среди истории и загруженных планов.
+function analyticsDisplayNames(){
+ const candidates=[];
+ for(const session of state.sessions||[])for(const ex of session.exercises||[])candidates.push(ex);
+ for(const plan of Object.values(state.planned||{})){
+  if(plan&&typeof plan==='object'){
+   if(Array.isArray(plan.exercises))candidates.push(...plan.exercises);
+   if(Array.isArray(plan.items))candidates.push(...plan.items);
+  }
+ }
+ for(const tpl of Object.values(state.templates||{}))for(const ex of tpl.exercises||[])candidates.push(ex);
+ const chosen=new Map();
+ for(const ex of candidates){
+  const name=String(ex?.name||'').trim().replace(/\s+/g,' ');
+  if(!name)continue;
+  const key=exerciseAnalyticsKey(name,ex.unit);
+  if(!chosen.has(key)||chosen.get(key).length<name.length)chosen.set(key,name);
+ }
+ return chosen;
+}
 function workoutWeightHistory(){
  const groups=new Map();
  for(const session of state.sessions){
@@ -351,7 +394,7 @@ function workoutWeightHistory(){
    const name=String(ex.name||'').trim().replace(/\s+/g,' ');
    if(!name)continue;
    const unit=String(ex.unit||'кг').trim();
-   const key=(name+'|'+unit).toLocaleLowerCase('ru-RU');
+   const key=exerciseAnalyticsKey(name,unit);
    // Вес одного повторения в самом тяжёлом выполненном рабочем подходе дня.
    const valid=(ex.sets||[]).filter(r=>r.type==='work'&&isDone(r)&&n(r.actualReps)>0&&n(r.actualWeight)>=0&&Number.isFinite(n(r.actualWeight)));
    if(!valid.length)continue;
@@ -360,14 +403,15 @@ function workoutWeightHistory(){
    const g=groups.get(key);
    // На дату может быть несколько записей этого упражнения — оставляем наибольший реальный вес.
    g.perDay.set(session.date,Math.max(g.perDay.get(session.date)??-Infinity,max));
-   g.name=name;
+   if(name.length>g.name.length)g.name=name;
   }
  }
+ const displayNames=analyticsDisplayNames();
  return [...groups.values()].map(g=>{
   const points=[...g.perDay.entries()].map(([date,value])=>({date,value})).sort((a,b)=>a.date.localeCompare(b.date));
   const pr=Math.max(...points.map(p=>p.value));
   const firstRecord=points.find(p=>p.value===pr);
-  return {key:g.key,name:g.name,unit:g.unit,points,pr,recordDate:firstRecord.date};
+  return {key:g.key,name:displayNames.get(g.key)||g.name,unit:g.unit,points,pr,recordDate:firstRecord.date};
  }).sort((a,b)=>a.name.localeCompare(b.name,'ru'));
 }
 function weightUnit(unit){return /гант/i.test(unit)?'кг / гант.':/\+кг/i.test(unit)?'кг дополн.':'кг';}
@@ -379,12 +423,20 @@ function filterChartPoints(points,range){
  const now=isoDate(new Date());const cutoff=new Date(now+'T12:00:00');cutoff.setDate(cutoff.getDate()-days);
  const date=isoDate(cutoff);return points.filter(p=>p.date>=date&&p.date<=now);
 }
-function miniChart(points,label,unit,averagePoints=[]){
+function miniChart(points,label,unit,averagePoints=[],integerStepFive=false){
  if(!points.length)return '<div class="notice">Для выбранного периода пока нет измерений.</div>';
  const W=336,H=214,L=42,R=14,T=16,B=34,plotW=W-L-R,plotH=H-T-B;
  const vals=points.map(p=>p.value).concat(averagePoints.filter(p=>p.date>=points[0].date&&p.date<=points[points.length-1].date).map(p=>p.value)),lo=Math.min(...vals),hi=Math.max(...vals);
  const pad=Math.max((hi-lo)*.18,unit==='кг'&&lo>20?.35:.6);
- const ymin=Math.max(0,lo-pad),ymax=hi+pad;
+ let ymin=Math.max(0,lo-pad),ymax=hi+pad,tickVals=null;
+ if(integerStepFive){
+  const step=5*Math.max(1,Math.ceil((hi-lo)/35));
+  ymin=Math.max(0,Math.floor(lo/step)*step);
+  ymax=Math.ceil(hi/step)*step;
+  if(ymin===ymax){ymin=Math.max(0,ymin-step);ymax+=step;}
+  tickVals=[];
+  for(let value=ymin;value<=ymax+.001;value+=step)tickVals.push(value);
+ }
  const times=points.map(p=>new Date(p.date+'T12:00:00').getTime());
  const tmin=Math.min(...times),tmax=Math.max(...times);
  const x=i=>tmax===tmin?L+plotW/2:L+(times[i]-tmin)/(tmax-tmin)*plotW;
@@ -393,7 +445,8 @@ function miniChart(points,label,unit,averagePoints=[]){
  const coords=points.map((p,i)=>`${f(x(i))},${f(y(p.value))}`).join(' ');
  const area=points.length>1?`${f(x(0))},${H-B} `+coords+` ${f(x(points.length-1))},${H-B}`:'';
  const dots=points.map((p,i)=>`<g><circle cx="${f(x(i))}" cy="${f(y(p.value))}" r="6.2" fill="#0f1414" opacity=".35"/><circle cx="${f(x(i))}" cy="${f(y(p.value))}" r="4.2" fill="#d8ff8b" stroke="#1c201a" stroke-width="2"><title>${esc(formatDateShort(p.date))}: ${fmt(p.value)} ${esc(unit)}</title></circle></g>`).join('');
- const lines=Array.from({length:4},(_,i)=>{const val=ymax-(ymax-ymin)*i/3,cy=f(y(val));return `<line x1="${L}" y1="${cy}" x2="${W-R}" y2="${cy}" stroke="#3a4042" stroke-width="1" stroke-dasharray="4,6"/><text x="${L-8}" y="${cy+3}" fill="#8f9a97" font-size="10" text-anchor="end">${esc(fmt(Math.round(val*10)/10))}</text>`;}).join('');
+ const axisLabels=tickVals||Array.from({length:4},(_,i)=>ymax-(ymax-ymin)*i/3);
+ const lines=axisLabels.map(val=>{const cy=f(y(val));return `<line x1="${L}" y1="${cy}" x2="${W-R}" y2="${cy}" stroke="#3a4042" stroke-width="1" stroke-dasharray="4,6"/><text x="${L-8}" y="${cy+3}" fill="#8f9a97" font-size="10" text-anchor="end">${esc(integerStepFive?String(val):fmt(Math.round(val*10)/10))}</text>`;}).join('');
  const datelabels=points.length===1?[[0,'middle']]:[[0,'start'],[points.length-1,'end']];
  const ticks=datelabels.map(([i,a])=>`<text x="${f(x(i))}" y="${H-10}" text-anchor="${a}" fill="#8f9a97" font-size="10">${esc(formatDateShort(points[i].date))}</text>`).join('');
  const avgPts=averagePoints.filter(p=>p.date>=points[0].date&&p.date<=points[points.length-1].date);
@@ -409,7 +462,7 @@ function repetitionHistory(exerciseKey){
  const perWeight=new Map();
  for(const sess of state.sessions){if(!/^\d{4}-\d{2}-\d{2}$/.test(sess.date||''))continue;
   for(const ex of sess.exercises||[]){const name=String(ex.name||'').trim().replace(/\s+/g,' '),unit=String(ex.unit||'кг').trim();
-   if((name+'|'+unit).toLocaleLowerCase('ru-RU')!==exerciseKey)continue;
+   if(exerciseAnalyticsKey(name,unit)!==exerciseKey)continue;
    for(const set of ex.sets||[]){if(set.type!=='work'||!isDone(set)||!Number.isInteger(n(set.actualReps))||n(set.actualReps)<1)continue;
     const w=n(set.actualWeight),r=n(set.actualReps);if(!Number.isFinite(w)||w<0)continue;
     if(!perWeight.has(w))perWeight.set(w,new Map());const byDay=perWeight.get(w);
@@ -426,7 +479,7 @@ function rollingWeightAverage(weights){
 }
 function renderProgress(){
  const groups=workoutWeightHistory(),range=state.ui.progressRange||'all';
- const active=groups.find(g=>g.key===state.ui.progressExercise)||groups[0]||null;
+ const active=groups.find(g=>g.key===state.ui.progressExercise)||groups.find(g=>g.key===exerciseAnalyticsKey(String(state.ui.progressExercise||'').split('|')[0],String(state.ui.progressExercise||'').split('|').slice(1).join('|')))||groups[0]||null;
  let html=intro('Прогресс','Графики показывают только реально поднятый вес за одно повторение в самом тяжёлом подтверждённом рабочем подходе тренировки. Не тоннаж и не расчётный 1ПМ.');
  html+=`<div class="panel"><div class="eyebrow">Период графиков</div>${progressRangeButtons()}</div>`;
  html+='<div class="panel"><div class="h">Рабочие веса и повторения</div>';
@@ -436,7 +489,7 @@ function renderProgress(){
   const points=filterChartPoints(active.points,range);
   html+=`<div class="progress-toolbar"><label class="small">Упражнение<select id="progressExercise" aria-label="Выбрать упражнение">${groups.map(g=>`<option value="${esc(g.key)}" ${g.key===active.key?'selected':''}>${esc(g.name)}</option>`).join('')}</select></label></div>`;
   html+=`<div class="metric-grid"><div class="metric-box primary"><div class="metric-label-top">Максимум</div><div class="metric-val">${fmt(active.pr)} кг</div><div class="metric-label">${esc(weightUnit(active.unit))}</div></div><div class="metric-box secondary"><div class="metric-label-top">Рекорд зафиксирован</div><div class="metric-val date-val">${esc(formatDateShort(active.recordDate))}</div><div class="metric-label">Дата первого достижения</div></div></div>`;
-  html+=miniChart(points,active.name,weightUnit(active.unit));
+  html+=miniChart(points,active.name,weightUnit(active.unit),[],true);
   html+='<p class="chart-note">Каждая точка — максимальный вес среди выполненных рабочих подходов за дату. Разминка и незавершённые подходы исключены. Значения — вес одной гантели, если упражнение с гантелями.</p>';
   html+=recentRows(points,weightUnit(active.unit));
   html+='<div class="divider"></div><div class="h">Прогресс повторений</div><p class="small">Максимум повторений с одинаковым весом. Например, 30 кг × 8 → 30 кг × 10.</p>';
@@ -445,7 +498,7 @@ function renderProgress(){
    const pts=filterChartPoints(chosen.points,range),pr=Math.max(...chosen.points.map(p=>p.value)),first=chosen.points.find(p=>p.value===pr);
    html+=`<label class="small reps-weight-label">Фактический вес<select id="progressRepsWeight" aria-label="Вес для сравнения повторений">${candidates.map(c=>`<option value="${c.weight}" ${c.weight===chosen.weight?'selected':''}>${fmt(c.weight)} кг${/гант/i.test(active.unit)?' / гант.':''}</option>`).join('')}</select></label>`;
    html+=`<div class="metric-grid"><div class="metric-box primary"><div class="metric-label-top">Максимум повторов</div><div class="metric-val">${pr}</div><div class="metric-label">При ${fmt(chosen.weight)} кг</div></div><div class="metric-box secondary"><div class="metric-label-top">Дата рекорда</div><div class="metric-val date-val">${esc(formatDateShort(first.date))}</div><div class="metric-label">Первое достижение</div></div></div>`;
-   html+=miniChart(pts,active.name+' — повторения','повт.');
+   html+=miniChart(pts,active.name+' — повторения','повт.',[],true);
   }else{
    html+='<div class="notice">Для этого упражнения пока нет подтверждённых рабочих подходов.</div>';
   }
