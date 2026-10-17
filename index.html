@@ -121,11 +121,14 @@ body::after{content:"";position:fixed;z-index:13;top:0;left:0;right:0;height:cal
 .month-head{align-items:center;gap:6px}.month-head .h{font-size:16px}.month-controls{display:flex;gap:3px;align-items:center}.month-controls>b{font-size:11px;text-align:center;max-width:106px;line-height:1.2;text-transform:capitalize}.month-controls>button{width:28px;height:30px;border:1px solid #3e4347;background:#242729;color:var(--lime);font-size:21px;border-radius:8px;padding:0}.month-calendar{margin-top:13px}.month-weekdays,.month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.month-weekdays>span{text-align:center;color:#979b9e;font-size:10px}.month-grid{margin-top:8px}.month-day{min-width:0;min-height:42px;border:1px solid #30363a;border-radius:9px;background:#212427;color:#bcc1c3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;position:relative;padding:2px;font-size:14px;font-weight:800}.month-day.current{border-color:#c8f56f}.month-day.complete{color:#d5f7a6;background:#2a3728}.month-day.partial{color:#f5cf98;background:#382e24}.month-day.planned{color:#c5cad2;background:#2a2e33}.month-day i{display:block;width:5px;height:5px;border-radius:50%;background:#c8f56f}.month-day.partial i{background:#ffc16d}.month-day.planned i{background:#9ea4aa}.calendar-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:10px;color:#b2b7bc}.calendar-legend span{display:flex;align-items:center;gap:5px}.calendar-legend i{height:8px;width:8px;border-radius:50%;background:#c8f56f}.calendar-legend .lg-partial{background:#ffc16d}.calendar-legend .lg-planned{background:#9ea4aa}
 .period-dates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:10px 0 14px}.period-dates label{min-width:0}.period-dates input{display:block;width:100%;max-width:100%;min-width:0;margin-top:5px;font-size:13px;line-height:1.2;color:var(--lime);background:#232629;padding:8px 4px;min-height:39px;border-radius:8px}.period-dates input::-webkit-date-and-time-value{min-width:0}
 .weight-form{grid-template-columns:1fr}.weight-form label,.weight-form input{min-width:0}.weight-form .button{grid-column:1}
+.weight-form input[type=date]{background:transparent !important;border:0 !important;padding:0 !important;box-shadow:none !important;border-radius:0 !important;height:auto !important;min-height:0 !important}
+.weight-form label:first-child{padding-bottom:6px}
+
 @media(max-width:375px){.topline>.pill{display:none}.big{font-size:17px}.pageword{font-size:17px}.range-buttons button{font-size:10px}.metric-val{font-size:18px}.metric-box.secondary .metric-val{font-size:16px}.calendar-card{padding:11px}.calendar-grid{gap:3px}.cal-item{padding:7px 1px}}
 
 
 /* СЕТ 1.0.1: фирменная геометрия №2 и адаптация заголовков */
-.setword-logo{display:block;flex:0 0 auto;width:86px;height:29px;color:var(--lime);overflow:visible;vertical-align:middle}
+.setword-italic{display:inline-block;flex:0 0 auto;font-size:29px;line-height:1;font-weight:950;font-style:italic;letter-spacing:-.06em;color:var(--lime);transform:skewX(-13deg);transform-origin:left center;text-shadow:0 0 0 transparent}
 .big{display:flex;align-items:center;gap:0;min-width:0;white-space:nowrap;font-size:18px;line-height:1.15}
 .big .pageword{color:#f6f6f4 !important;white-space:nowrap;font-size:18px;font-weight:850;letter-spacing:-.55px}
 .big .slash-accent{color:var(--lime) !important;font-size:18px;font-weight:900;white-space:pre}
@@ -134,7 +137,7 @@ body::after{content:"";position:fixed;z-index:13;top:0;left:0;right:0;height:cal
 .month-controls{display:flex;align-items:center;justify-content:flex-end;gap:3px;min-width:0;white-space:nowrap;flex-wrap:nowrap}
 .month-controls>b{font-size:clamp(10px,2.9vw,12px);white-space:nowrap;max-width:none;line-height:1.2;color:#f1f2ee;font-weight:800;text-align:center;min-width:0}
 .month-controls>button{flex:0 0 24px;width:24px;height:30px}
-@media(max-width:375px){.setword-logo{width:78px;height:27px}.big .pageword{font-size:16px}.big .slash-accent{font-size:16px}.month-head{gap:3px}.month-head .h{font-size:11px;letter-spacing:-.5px}.month-controls>b{font-size:10px}.month-controls>button{flex-basis:20px;width:20px;height:28px}}
+@media(max-width:375px){.setword-italic{font-size:26px}.big .pageword{font-size:16px}.big .slash-accent{font-size:16px}.month-head{gap:3px}.month-head .h{font-size:11px;letter-spacing:-.5px}.month-controls>b{font-size:10px}.month-controls>button{flex-basis:20px;width:20px;height:28px}}
 </style>
 </head>
 <body><main id="app" class="wrap"></main><nav id="navigation" class="topnav" aria-label="Навигация"></nav><div id="restDock"></div><div id="toast" class="toast hidden" role="status"></div><input type="file" accept=".json,application/json" id="importFile" class="hidden" aria-label="Загрузить резервную копию"><input type="file" accept=".txt,text/plain" id="planImportFile" class="hidden" aria-label="Загрузить TXT с программой">
@@ -262,7 +265,7 @@ function weekCalendar(dateStr){
 function summary(s){let t=0,done=0;for(const ex of s.exercises){for(const row of workSets(ex)){t++;if(isDone(row))done++;}}return {done,total:t};}
 const daytabs=()=>`<div class="day-tabs">${Object.keys(D).map(day=>`<button data-action="day" data-day="${day}" class="${state.ui.day===day?'selected':''}">${D[day]}</button>`).join('')}</div>`;
 const pills=(arr)=>arr.map(([text,cls])=>`<span class="pill ${cls||''}">${esc(text)}</span>`).join(' ');
-function intro(title,caption){return `<div class="topline"><div class="brand"><div class="brandicon" aria-hidden="true"></div><div><div class="eyebrow">Тренировочный дневник</div><div class="big"><svg class="setword-logo" viewBox="0 0 158 52" role="img" aria-label="СЕТ" xmlns="http://www.w3.org/2000/svg"><title>СЕТ</title><g fill="none" stroke="currentColor" stroke-width="9.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M43 9H13V43H43"/><path d="M59 9V43M59 9H91M59 26H86M59 43H91"/><path d="M108 9H149M128.5 9V43"/></g></svg><span class="slash-accent"> / </span><span class="pageword">${esc(title)}</span></div></div></div><span class="pill">Локально</span></div>${caption?`<p class="muted" style="margin:14px 0 0">${caption}</p>`:''}`;}
+function intro(title,caption){return `<div class="topline"><div class="brand"><div class="brandicon" aria-hidden="true"></div><div><div class="eyebrow">Тренировочный дневник</div><div class="big"><span class="setword-italic" aria-label="СЕТ">СЕТ</span><span class="slash-accent"> / </span><span class="pageword">${esc(title)}</span></div></div></div><span class="pill">Локально</span></div>${caption?`<p class="muted" style="margin:14px 0 0">${caption}</p>`:''}`;}
 function renderTrain(){const s=currentSession(),day=state.ui.day,date=state.ui.date;
 let html=intro('Дневник','')+daytabs();
 html+=weekCalendar(date);
@@ -423,32 +426,31 @@ function rollingWeightAverage(weights){
 }
 function renderProgress(){
  const groups=workoutWeightHistory(),range=state.ui.progressRange||'all';
+ const active=groups.find(g=>g.key===state.ui.progressExercise)||groups[0]||null;
  let html=intro('Прогресс','Графики показывают только реально поднятый вес за одно повторение в самом тяжёлом подтверждённом рабочем подходе тренировки. Не тоннаж и не расчётный 1ПМ.');
  html+=`<div class="panel"><div class="eyebrow">Период графиков</div>${progressRangeButtons()}</div>`;
- html+='<div class="panel"><div class="h">Рабочие веса по упражнениям</div>';
- if(!groups.length){html+='<div class="notice">Пока нет подтверждённых рабочих подходов. Запиши тренировку — и здесь появится график.</div></div>';}
- else{
-  const active=groups.find(g=>g.key===state.ui.progressExercise)||groups[0];
+ html+='<div class="panel"><div class="h">Рабочие веса и повторения</div>';
+ if(!groups.length){
+  html+='<div class="notice">Пока нет подтверждённых рабочих подходов. Запиши тренировку — и здесь появятся графики.</div></div>';
+ }else{
   const points=filterChartPoints(active.points,range);
   html+=`<div class="progress-toolbar"><label class="small">Упражнение<select id="progressExercise" aria-label="Выбрать упражнение">${groups.map(g=>`<option value="${esc(g.key)}" ${g.key===active.key?'selected':''}>${esc(g.name)}</option>`).join('')}</select></label></div>`;
-  html+=`<div class="metric-grid"><div class="metric-box primary"><div class="metric-label-top">Максимум</div><div class="metric-val">${fmt(active.pr)} кг</div><div class="metric-label">${esc(weightUnit(active.unit))}</div></div><div class="metric-box secondary"><div class="metric-label-top">Рекорд зафиксирован</div><div class="metric-val">${esc(formatDateShort(active.recordDate))}</div><div class="metric-label">Дата первого достижения</div></div></div>`;
+  html+=`<div class="metric-grid"><div class="metric-box primary"><div class="metric-label-top">Максимум</div><div class="metric-val">${fmt(active.pr)} кг</div><div class="metric-label">${esc(weightUnit(active.unit))}</div></div><div class="metric-box secondary"><div class="metric-label-top">Рекорд зафиксирован</div><div class="metric-val date-val">${esc(formatDateShort(active.recordDate))}</div><div class="metric-label">Дата первого достижения</div></div></div>`;
   html+=miniChart(points,active.name,weightUnit(active.unit));
   html+='<p class="chart-note">Каждая точка — максимальный вес среди выполненных рабочих подходов за дату. Разминка и незавершённые подходы исключены. Значения — вес одной гантели, если упражнение с гантелями.</p>';
-  html+=recentRows(points,weightUnit(active.unit))+'</div>';
- }
- // Повторения сравниваем только для одного и того же фактического веса.
- html+='<div class="panel"><div class="h">Прогресс повторений</div><p class="small">Максимум повторений с одинаковым весом. Например, 30 кг × 8 → 30 кг × 10.</p>';
- if(groups.length){
-  const ex=groups.find(g=>g.key===state.ui.progressRepsExercise)||groups.find(g=>g.key===state.ui.progressExercise)||groups[0];
-  const candidates=repetitionHistory(ex.key),chosen=candidates.find(c=>String(c.weight)===String(state.ui.progressRepsWeight))||candidates[0];
-  html+=`<label class="small">Упражнение<select id="progressRepsExercise" aria-label="Упражнение для анализа повторений">${groups.map(g=>`<option value="${esc(g.key)}" ${ex.key===g.key?'selected':''}>${esc(g.name)}</option>`).join('')}</select></label>`;
-  if(chosen){const pts=filterChartPoints(chosen.points,range),pr=Math.max(...chosen.points.map(p=>p.value)),first=chosen.points.find(p=>p.value===pr);
-   html+=`<label class="small reps-weight-label">Фактический вес<select id="progressRepsWeight" aria-label="Вес для сравнения повторений">${candidates.map(c=>`<option value="${c.weight}" ${c.weight===chosen.weight?'selected':''}>${fmt(c.weight)} кг${/гант/i.test(ex.unit)?' / гант.':''}</option>`).join('')}</select></label>`;
+  html+=recentRows(points,weightUnit(active.unit));
+  html+='<div class="divider"></div><div class="h">Прогресс повторений</div><p class="small">Максимум повторений с одинаковым весом. Например, 30 кг × 8 → 30 кг × 10.</p>';
+  const candidates=repetitionHistory(active.key),chosen=candidates.find(c=>String(c.weight)===String(state.ui.progressRepsWeight))||candidates[0];
+  if(chosen){
+   const pts=filterChartPoints(chosen.points,range),pr=Math.max(...chosen.points.map(p=>p.value)),first=chosen.points.find(p=>p.value===pr);
+   html+=`<label class="small reps-weight-label">Фактический вес<select id="progressRepsWeight" aria-label="Вес для сравнения повторений">${candidates.map(c=>`<option value="${c.weight}" ${c.weight===chosen.weight?'selected':''}>${fmt(c.weight)} кг${/гант/i.test(active.unit)?' / гант.':''}</option>`).join('')}</select></label>`;
    html+=`<div class="metric-grid"><div class="metric-box primary"><div class="metric-label-top">Максимум повторов</div><div class="metric-val">${pr}</div><div class="metric-label">При ${fmt(chosen.weight)} кг</div></div><div class="metric-box secondary"><div class="metric-label-top">Дата рекорда</div><div class="metric-val date-val">${esc(formatDateShort(first.date))}</div><div class="metric-label">Первое достижение</div></div></div>`;
-   html+=miniChart(pts,ex.name+' — повторения','повт.');
-  }else html+='<div class="notice">Для этого упражнения пока нет подтверждённых рабочих подходов.</div>';
- }else html+='<div class="notice">Повторения появятся после первой выполненной тренировки.</div>';
- html+='</div>';
+   html+=miniChart(pts,active.name+' — повторения','повт.');
+  }else{
+   html+='<div class="notice">Для этого упражнения пока нет подтверждённых рабочих подходов.</div>';
+  }
+  html+='</div>';
+ }
  const weights=(state.bodyWeights||[]).filter(p=>/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&Number.isFinite(n(p.weight))&&n(p.weight)>0).map(p=>({date:p.date,value:n(p.weight)})).sort((a,b)=>a.date.localeCompare(b.date));
  const filtered=filterChartPoints(weights,range),last=weights.at(-1),first=weights[0];
  html+='<div class="panel"><div class="h">Вес тела</div><p class="small">Добавляй замеры с датой. Для одной даты хранится одно значение; при повторном внесении его можно заменить.</p>';
@@ -462,13 +464,15 @@ function renderProgress(){
   html+='<div class="chart-rows">';
   weights.slice().reverse().forEach(p=>{html+=`<div class="chart-row"><div><b>${fmt(p.value)} кг</b><div class="record-date">${esc(formatDateShort(p.date))}</div></div><div class="weight-actions"><button type="button" class="button sm" data-action="edit-body-weight" data-date="${esc(p.date)}">Изменить</button><button type="button" class="button sm danger" data-action="delete-body-weight" data-date="${esc(p.date)}" aria-label="Удалить вес от ${esc(p.date)}">×</button></div></div>`;});
   html+='</div>';
- }else{html+='<div class="notice">Замеров пока нет. Внеси первый вес, чтобы появился график.</div>';}
+ }else{
+  html+='<div class="notice">Замеров пока нет. Внеси первый вес, чтобы появился график.</div>';
+ }
  html+='</div>';
  html+=`<div class="panel"><div class="row between"><div class="h">Личные рекорды</div><span class="pill">${groups.length} упражнений</span></div><p class="small">Максимальный реально поднятый вес и дата, когда он впервые был достигнут.</p>`;
- if(!groups.length)html+='<div class="notice">Рекорды появятся после выполнения рабочих подходов.</div>';
+ if(!groups.length) html+='<div class="notice">Рекорды появятся после выполнения рабочих подходов.</div>';
  else groups.slice().sort((a,b)=>a.name.localeCompare(b.name,'ru')).forEach(g=>{html+=`<div class="record-row"><img class="record-thumb" src="${exerciseThumb(g.name)}" alt="" aria-hidden="true" loading="lazy"><div class="record-info"><div class="record-name">${esc(g.name)}</div><div class="record-number">${fmt(g.pr)} кг</div><div class="record-date">${esc(formatDateShort(g.recordDate))}${weightUnit(g.unit)!=='кг'?' · '+esc(weightUnit(g.unit)):''}</div></div></div>`;});
  html+='</div><p class="footnote">Все замеры и рекорды хранятся локально на iPhone и входят в резервную копию JSON. Для синхронизации между устройствами пока нужна ручная передача копии.</p>';
- return html;
+ return html
 }
 function validBodyDate(value){if(!/^\d{4}-\d{2}-\d{2}$/.test(value||''))return false;const d=new Date(value+'T12:00:00');return Number.isFinite(d.getTime())&&isoDate(d)===value;}
 function saveBodyWeight(){
@@ -659,7 +663,7 @@ function edited(el){const s=currentSession();if(el.matches('[data-date]')){const
  if(el.dataset.templateSet){const s=state.templates[state.ui.day].exercises[Number(el.dataset.ex)]?.sets[Number(el.dataset.set)];if(!s)return;s[el.dataset.templateSet]=el.value;touchTemplate();return;}
  if(el.id==='restInput'){state.settings.restSec=Math.max(0,Math.min(900,n(el.value)||0));save();return;}}
  document.addEventListener('click',ev=>{const target=ev.target.closest('[data-action]');if(target)action(target);});
- document.addEventListener('change',ev=>{if(ev.target.id==='progressExercise'){state.ui.progressExercise=ev.target.value;save();render();return;}if(ev.target.id==='progressRepsExercise'){state.ui.progressRepsExercise=ev.target.value;state.ui.progressRepsWeight='';save();render();return;}if(ev.target.id==='progressRepsWeight'){state.ui.progressRepsWeight=ev.target.value;save();render();return;}edited(ev.target);});
+ document.addEventListener('change',ev=>{if(ev.target.id==='progressExercise'){state.ui.progressExercise=ev.target.value;state.ui.progressRepsWeight='';save();render();return;}if(ev.target.id==='progressRepsWeight'){state.ui.progressRepsWeight=ev.target.value;save();render();return;}edited(ev.target);});
  document.addEventListener('input',ev=>{if(ev.target.matches('[data-sessionnote],[data-exnote]'))edited(ev.target);});
  document.querySelector('#importFile').addEventListener('change',ev=>importBackup(ev.target.files[0]));
  document.querySelector('#planImportFile').addEventListener('change',ev=>importPlan(ev.target.files[0]));
