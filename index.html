@@ -129,7 +129,7 @@ body::after{content:"";position:fixed;z-index:13;top:0;left:0;right:0;height:cal
 
 /* СЕТ 1.0.1: фирменная геометрия №2 и адаптация заголовков */
 .setword-italic{display:inline-block;flex:0 0 auto;font-size:29px;line-height:1;font-weight:950;font-style:italic;letter-spacing:-.06em;color:var(--lime);transform:skewX(-13deg);transform-origin:left center;text-shadow:0 0 0 transparent}
-.big{display:flex;align-items:center;gap:0;min-width:0;white-space:nowrap;font-size:18px;line-height:1.15}
+.big{display:flex;align-items:center;gap:10px;min-width:0;white-space:nowrap;font-size:18px;line-height:1.15}
 .big .pageword{color:#f6f6f4 !important;white-space:nowrap;font-size:18px;font-weight:850;letter-spacing:-.55px}
 .big .slash-accent{color:var(--lime) !important;font-size:18px;font-weight:900;white-space:pre}
 .month-head{display:grid !important;grid-template-columns:minmax(0,1fr) auto;gap:5px;align-items:center;min-width:0}
@@ -265,7 +265,7 @@ function weekCalendar(dateStr){
 function summary(s){let t=0,done=0;for(const ex of s.exercises){for(const row of workSets(ex)){t++;if(isDone(row))done++;}}return {done,total:t};}
 const daytabs=()=>`<div class="day-tabs">${Object.keys(D).map(day=>`<button data-action="day" data-day="${day}" class="${state.ui.day===day?'selected':''}">${D[day]}</button>`).join('')}</div>`;
 const pills=(arr)=>arr.map(([text,cls])=>`<span class="pill ${cls||''}">${esc(text)}</span>`).join(' ');
-function intro(title,caption){return `<div class="topline"><div class="brand"><div class="brandicon" aria-hidden="true"></div><div><div class="eyebrow">Тренировочный дневник</div><div class="big"><span class="setword-italic" aria-label="СЕТ">СЕТ</span><span class="slash-accent"> / </span><span class="pageword">${esc(title)}</span></div></div></div><span class="pill">Локально</span></div>${caption?`<p class="muted" style="margin:14px 0 0">${caption}</p>`:''}`;}
+function intro(title,caption){return `<div class="topline"><div class="brand"><div class="brandicon" aria-hidden="true"></div><div><div class="eyebrow">Тренировочный дневник</div><div class="big"><span class="setword-italic" aria-label="СЕТ">СЕТ</span><span class="slash-accent">/</span><span class="pageword">${esc(title)}</span></div></div></div><span class="pill">Локально</span></div>${caption?`<p class="muted" style="margin:14px 0 0">${caption}</p>`:''}`;}
 function renderTrain(){const s=currentSession(),day=state.ui.day,date=state.ui.date;
 let html=intro('Дневник','')+daytabs();
 html+=weekCalendar(date);
