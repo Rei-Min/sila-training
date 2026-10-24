@@ -168,6 +168,7 @@ function exerciseThumb(name){
  const t=String(name||'').toLowerCase();
  if(t.includes('гантел'))return RECORD_THUMBS.dumbbell;
  if(t.includes('жим ногами'))return RECORD_THUMBS.plates;
+ if(t.includes('бабочк')||t.includes('баттерфляй')||t.includes('pec deck')||t.includes('пек-дек')||t.includes('пек дек'))return RECORD_THUMBS.stack;
  if(t.includes('подтяг')||t.includes('турник'))return RECORD_THUMBS.pullup;
  if(t.includes('блок')||t.includes('канат')||t.includes('горизонтальн')||t.includes('вертикальн')||t.includes('верхн')||t.includes('нижн')||t.includes('разгибан')||t.includes('сгибан')||t.includes('тяга')&&!t.includes('румынск')&&!t.includes('станов')&&!t.includes('штанг'))return RECORD_THUMBS.stack;
  return RECORD_THUMBS.plates;
@@ -504,6 +505,10 @@ function renderProgress(){
   }
   html+='</div>';
  }
+ html+=`<div class="panel"><div class="row between"><div class="h">Личные рекорды</div><span class="pill">${groups.length} упражнений</span></div><p class="small">Максимальный реально поднятый вес и дата, когда он впервые был достигнут.</p>`;
+ if(!groups.length) html+='<div class="notice">Рекорды появятся после выполнения рабочих подходов.</div>';
+ else groups.slice().sort((a,b)=>a.name.localeCompare(b.name,'ru')).forEach(g=>{html+=`<div class="record-row"><img class="record-thumb" src="${exerciseThumb(g.name)}" alt="" aria-hidden="true" loading="lazy"><div class="record-info"><div class="record-name">${esc(g.name)}</div><div class="record-number">${fmt(g.pr)} кг</div><div class="record-date">${esc(formatDateShort(g.recordDate))}${weightUnit(g.unit)!=='кг'?' · '+esc(weightUnit(g.unit)):''}</div></div></div>`;});
+ html+='</div>';
  const weights=(state.bodyWeights||[]).filter(p=>/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&Number.isFinite(n(p.weight))&&n(p.weight)>0).map(p=>({date:p.date,value:n(p.weight)})).sort((a,b)=>a.date.localeCompare(b.date));
  const filtered=filterChartPoints(weights,range),last=weights.at(-1),first=weights[0];
  html+='<div class="panel"><div class="h">Вес тела</div><p class="small">Добавляй замеры с датой. Для одной даты хранится одно значение; при повторном внесении его можно заменить.</p>';
@@ -515,16 +520,13 @@ function renderProgress(){
   html+=miniChart(filtered,'Динамика веса тела','кг',filterChartPoints(avgs,range));
   html+='<div class="chart-note"><span class="avg-legend">Лайм — измерения · пунктир — средний вес за 7 дней.</span> Разница считается между первым и последним сохранёнными замерами; фильтр периода меняет только график.</div>';
   html+='<div class="chart-rows">';
-  weights.slice().reverse().forEach(p=>{html+=`<div class="chart-row"><div><b>${fmt(p.value)} кг</b><div class="record-date">${esc(formatDateShort(p.date))}</div></div><div class="weight-actions"><button type="button" class="button sm" data-action="edit-body-weight" data-date="${esc(p.date)}">Изменить</button><button type="button" class="button sm danger" data-action="delete-body-weight" data-date="${esc(p.date)}" aria-label="Удалить вес от ${esc(p.date)}">×</button></div></div>`;});
+  weights.slice(-7).reverse().forEach(p=>{html+=`<div class="chart-row"><div><b>${fmt(p.value)} кг</b><div class="record-date">${esc(formatDateShort(p.date))}</div></div><div class="weight-actions"><button type="button" class="button sm" data-action="edit-body-weight" data-date="${esc(p.date)}">Изменить</button><button type="button" class="button sm danger" data-action="delete-body-weight" data-date="${esc(p.date)}" aria-label="Удалить вес от ${esc(p.date)}">×</button></div></div>`;});
   html+='</div>';
  }else{
   html+='<div class="notice">Замеров пока нет. Внеси первый вес, чтобы появился график.</div>';
  }
  html+='</div>';
- html+=`<div class="panel"><div class="row between"><div class="h">Личные рекорды</div><span class="pill">${groups.length} упражнений</span></div><p class="small">Максимальный реально поднятый вес и дата, когда он впервые был достигнут.</p>`;
- if(!groups.length) html+='<div class="notice">Рекорды появятся после выполнения рабочих подходов.</div>';
- else groups.slice().sort((a,b)=>a.name.localeCompare(b.name,'ru')).forEach(g=>{html+=`<div class="record-row"><img class="record-thumb" src="${exerciseThumb(g.name)}" alt="" aria-hidden="true" loading="lazy"><div class="record-info"><div class="record-name">${esc(g.name)}</div><div class="record-number">${fmt(g.pr)} кг</div><div class="record-date">${esc(formatDateShort(g.recordDate))}${weightUnit(g.unit)!=='кг'?' · '+esc(weightUnit(g.unit)):''}</div></div></div>`;});
- html+='</div><p class="footnote">Все замеры и рекорды хранятся локально на iPhone и входят в резервную копию JSON. Для синхронизации между устройствами пока нужна ручная передача копии.</p>';
+ html+='<p class="footnote">Все замеры и рекорды хранятся локально на iPhone и входят в резервную копию JSON. Для синхронизации между устройствами пока нужна ручная передача копии.</p>';
  return html
 }
 function validBodyDate(value){if(!/^\d{4}-\d{2}-\d{2}$/.test(value||''))return false;const d=new Date(value+'T12:00:00');return Number.isFinite(d.getTime())&&isoDate(d)===value;}
@@ -709,7 +711,7 @@ function action(btn){const a=btn.dataset.action,day=btn.dataset.day,tab=btn.data
 }
 function edited(el){const s=currentSession();if(el.matches('[data-date]')){const v=el.value;if(!v)return;const d=new Date(v+'T12:00:00').getDay();const day=Object.keys(WEEK).find(k=>WEEK[k]===d);if(!day){toast('Выбери вторник, четверг или субботу');render();return;}state.ui.date=v;state.ui.day=day;save();render();return;}
  if(el.dataset.sessfield&&s){const row=s.exercises[Number(el.dataset.ex)]?.sets[Number(el.dataset.set)];if(!row)return;row[el.dataset.sessfield]=el.value; if(el.dataset.sessfield==='actualWeight'||el.dataset.sessfield==='actualReps')row.filledFromPlan=false; if(row.done&&!isDone(row))row.done=false;save();return;}
- if(el.hasAttribute('data-exnote')&&s){s.exercises[Number(el.dataset.ex)].notesSession=el.value;save();return;}
+ if(el.hasAttribute('data-exnote')&&s){const index=Number(el.dataset.exnote);const target=s.exercises?.[index];if(!target)return;target.notesSession=el.value;save();return;}
  if(el.hasAttribute('data-sessionnote')&&s){s.note=el.value;save();return;}
  if(el.dataset.sessionfield&&s){s[el.dataset.sessionfield]=el.value;save();return;}
  if(el.dataset.template){const ex=state.templates[state.ui.day].exercises[Number(el.dataset.ex)];if(!ex)return;ex[el.dataset.template]=el.dataset.template==='step'?Math.max(0,n(el.value)||0):el.value;touchTemplate();return;}
