@@ -478,6 +478,22 @@ function rollingWeightAverage(weights){
  return weights.map(p=>{const dt=new Date(p.date+'T12:00:00');dt.setDate(dt.getDate()-6);const start=isoDate(dt);const values=weights.filter(q=>q.date>=start&&q.date<=p.date).map(q=>q.value);
   return {date:p.date,value:+(values.reduce((a,b)=>a+b,0)/values.length).toFixed(2),count:values.length};});
 }
+// Сравнение календарных недель: Пн–Вс, только реально внесённые измерения.
+// Текущая неделя отсчитывается до сегодняшнего дня, без будущих записей.
+function weeklyBodyWeightComparison(weights,today=new Date()){
+ const day=new Date(today.getFullYear(),today.getMonth(),today.getDate(),12);
+ const weekMonday=new Date(day);
+ weekMonday.setDate(day.getDate()-((day.getDay()+6)%7));
+ const prevMonday=new Date(weekMonday),prevSunday=new Date(weekMonday);
+ prevMonday.setDate(prevMonday.getDate()-7);
+ prevSunday.setDate(prevSunday.getDate()-1);
+ const currentStart=isoDate(weekMonday),previousStart=isoDate(prevMonday),previousEnd=isoDate(prevSunday),todayIso=isoDate(day);
+ const previous=weights.filter(p=>p.date>=previousStart&&p.date<=previousEnd);
+ const current=weights.filter(p=>p.date>=currentStart&&p.date<=todayIso);
+ const avg=items=>items.length?items.reduce((sum,p)=>sum+p.value,0)/items.length:null;
+ const previousAvg=avg(previous),currentAvg=avg(current);
+ return {previousAvg,currentAvg,change:previousAvg!==null&&currentAvg!==null?+(currentAvg-previousAvg).toFixed(2):null,previousCount:previous.length,currentCount:current.length};
+}
 function renderProgress(){
  const groups=workoutWeightHistory(),range=state.ui.progressRange||'all';
  const active=groups.find(g=>g.key===state.ui.progressExercise)||groups.find(g=>g.key===exerciseAnalyticsKey(String(state.ui.progressExercise||'').split('|')[0],String(state.ui.progressExercise||'').split('|').slice(1).join('|')))||groups[0]||null;
@@ -514,11 +530,14 @@ function renderProgress(){
  html+='<div class="panel"><div class="h">Вес тела</div><p class="small">Добавляй замеры с датой. Для одной даты хранится одно значение; при повторном внесении его можно заменить.</p>';
  html+=`<div class="weight-form"><label class="small">Дата замера<input id="bodyWeightDate" type="date" value="${isoDate(new Date())}"></label><label class="small">Вес, кг<input id="bodyWeightValue" inputmode="decimal" type="number" min="15" max="500" step="0.1" placeholder="Напр. 99,5"></label><button type="button" class="button primary" data-action="save-body-weight">+ Сохранить измерение</button></div>`;
  if(weights.length){
-  html+=`<div class="metric-grid"><div class="metric-box primary"><div class="metric-label-top">Текущий вес</div><div class="metric-val">${fmt(last.value)} кг</div><div class="metric-label">${esc(formatDateShort(last.date))}</div></div><div class="metric-box secondary"><div class="metric-label-top">Динамика</div><div class="metric-val">${last.value-first.value>0?'+':''}${fmt(+(last.value-first.value).toFixed(2))} кг</div><div class="metric-label">От первого замера</div></div></div>`;
+  const week=weeklyBodyWeightComparison(weights);
+  const weekDelta=week.change===null?'—':`${week.change>0?'+':''}${fmt(week.change)} кг`;
+  const weekNote=week.change===null?'Нужны замеры за обе недели':`Среднее: ${fmt(+week.previousAvg.toFixed(2))} → ${fmt(+week.currentAvg.toFixed(2))} кг`;
+  html+=`<div class="metric-grid"><div class="metric-box primary"><div class="metric-label-top">Текущий вес</div><div class="metric-val">${fmt(last.value)} кг</div><div class="metric-label">${esc(formatDateShort(last.date))}</div></div><div class="metric-box secondary"><div class="metric-label-top">Динамика · неделя к неделе</div><div class="metric-val">${weekDelta}</div><div class="metric-label">${weekNote}</div></div></div>`;
   const avgs=rollingWeightAverage(weights),latestAverage=avgs.at(-1);
   html+=`<div class="average-bar"><span><b>Средний вес за 7 дней</b><small>По ${latestAverage.count} измерениям, до ${esc(formatDateShort(last.date))}</small></span><strong>${fmt(latestAverage.value)} кг</strong></div>`;
   html+=miniChart(filtered,'Динамика веса тела','кг',filterChartPoints(avgs,range));
-  html+='<div class="chart-note"><span class="avg-legend">Лайм — измерения · пунктир — средний вес за 7 дней.</span> Разница считается между первым и последним сохранёнными замерами; фильтр периода меняет только график.</div>';
+  html+='<div class="chart-note"><span class="avg-legend">Лайм — измерения · пунктир — средний вес за 7 дней.</span> Динамика — разница средних за текущую и прошлую календарные недели (Пн–Вс). В текущей неделе учитываются уже внесённые замеры; фильтр периода меняет только график.</div>';
   html+='<div class="chart-rows">';
   weights.slice(-7).reverse().forEach(p=>{html+=`<div class="chart-row"><div><b>${fmt(p.value)} кг</b><div class="record-date">${esc(formatDateShort(p.date))}</div></div><div class="weight-actions"><button type="button" class="button sm" data-action="edit-body-weight" data-date="${esc(p.date)}">Изменить</button><button type="button" class="button sm danger" data-action="delete-body-weight" data-date="${esc(p.date)}" aria-label="Удалить вес от ${esc(p.date)}">×</button></div></div>`;});
   html+='</div>';
